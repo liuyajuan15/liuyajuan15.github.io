@@ -16,21 +16,21 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>git使用 | lyjの博客</title>
-  <meta name="description" content="看完廖雪峰老师的git教程后，对git的使用有所了解，因此整理一下，作为参考 一、Git简介1. Git的诞生2. 集中式vs分布式二、安装Git三、创建版本库四、时光机穿梭1. 版本回退2. 工作区和暂存区3. 管理修改4.撤销修改5.删除文件五、远程仓库1. 添加远程库2. 从远程库克隆六、分支管理1. 创建与合并分支2. 解决冲突3. 分支管理策略4. Bug分支5. Feature分支6.">
-<meta name="keywords" content="git">
+  <title>深拷贝和浅拷贝 | lyjの博客</title>
+  <meta name="description" content="深拷贝：赋值时完全复制，完全的copy，对其中一个做出改变，不会影响另一个 浅拷贝：赋值时，引用赋值，相当于取了一个别名。对其中一个修改，会影响另一个。 PHP中， = 赋值时，普通对象是深拷贝，但对对象来说，是浅拷贝。也就是说，对象的赋值是引用赋值。（对象作为参数传递时，也是引用传递，无论函数定义时参数前面是否有&amp;amp;符号） php4中，对象的 = 赋值是实现一份副本，这样存在很多问题，在">
+<meta name="keywords" content="设计模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="git使用">
-<meta property="og:url" content="http://www/lyj1215.com/2017/09/07/git/index.html">
+<meta property="og:title" content="深拷贝和浅拷贝">
+<meta property="og:url" content="http://www/lyj1215.com/2017/09/08/copy/index.html">
 <meta property="og:site_name" content="lyjの博客">
-<meta property="og:description" content="看完廖雪峰老师的git教程后，对git的使用有所了解，因此整理一下，作为参考 一、Git简介1. Git的诞生2. 集中式vs分布式二、安装Git三、创建版本库四、时光机穿梭1. 版本回退2. 工作区和暂存区3. 管理修改4.撤销修改5.删除文件五、远程仓库1. 添加远程库2. 从远程库克隆六、分支管理1. 创建与合并分支2. 解决冲突3. 分支管理策略4. Bug分支5. Feature分支6.">
+<meta property="og:description" content="深拷贝：赋值时完全复制，完全的copy，对其中一个做出改变，不会影响另一个 浅拷贝：赋值时，引用赋值，相当于取了一个别名。对其中一个修改，会影响另一个。 PHP中， = 赋值时，普通对象是深拷贝，但对对象来说，是浅拷贝。也就是说，对象的赋值是引用赋值。（对象作为参数传递时，也是引用传递，无论函数定义时参数前面是否有&amp;amp;符号） php4中，对象的 = 赋值是实现一份副本，这样存在很多问题，在">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-07T07:00:15.000Z">
+<meta property="og:updated_time" content="2017-09-08T10:37:37.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="git使用">
-<meta name="twitter:description" content="看完廖雪峰老师的git教程后，对git的使用有所了解，因此整理一下，作为参考 一、Git简介1. Git的诞生2. 集中式vs分布式二、安装Git三、创建版本库四、时光机穿梭1. 版本回退2. 工作区和暂存区3. 管理修改4.撤销修改5.删除文件五、远程仓库1. 添加远程库2. 从远程库克隆六、分支管理1. 创建与合并分支2. 解决冲突3. 分支管理策略4. Bug分支5. Feature分支6.">
+<meta name="twitter:title" content="深拷贝和浅拷贝">
+<meta name="twitter:description" content="深拷贝：赋值时完全复制，完全的copy，对其中一个做出改变，不会影响另一个 浅拷贝：赋值时，引用赋值，相当于取了一个别名。对其中一个修改，会影响另一个。 PHP中， = 赋值时，普通对象是深拷贝，但对对象来说，是浅拷贝。也就是说，对象的赋值是引用赋值。（对象作为参数传递时，也是引用传递，无论函数定义时参数前面是否有&amp;amp;符号） php4中，对象的 = 赋值是实现一份副本，这样存在很多问题，在">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://www/lyj1215.com/2017/09/07/git/index.html">
+  <link rel="canonical" href="http://www/lyj1215.com/2017/09/08/copy/index.html">
   
     <link rel="alternate" href="/atom.xml" title="lyjの博客" type="application/atom+xml">
   
@@ -295,14 +295,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-git" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-copy" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      git使用
+      深拷贝和浅拷贝
     </h1>
   
 
@@ -310,20 +310,20 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="fa fa-calendar-check-o"></i>
-	<a href="/2017/09/07/git/" class="article-date">
-	  <time datetime="2017-09-07T04:00:33.000Z" itemprop="datePublished">2017-09-07</time>
+	<a href="/2017/09/08/copy/" class="article-date">
+	  <time datetime="2017-09-08T10:12:41.000Z" itemprop="datePublished">2017-09-08</time>
 	</a>
 </span>
         
   <span class="article-category">
     <i class="fa fa-folder"></i>
-    <a class="article-category-link" href="/categories/其他/">其他</a>
+    <a class="article-category-link" href="/categories/design-mode/">设计模式</a>
   </span>
 
         
   <span class="article-tag">
     <i class="fa fa-tag"></i>
-	<a class="article-tag-link" href="/tags/git/">git</a>
+	<a class="article-tag-link" href="/tags/design-mode/">设计模式</a>
   </span>
 
 
@@ -336,15 +336,23 @@
 	</span>
 
 
-        <span class="post-comment"><i class="fa fa-commenting-o"></i> <a href="/2017/09/07/git/#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="fa fa-commenting-o"></i> <a href="/2017/09/08/copy/#comments" class="article-comment-link">评论</a></span>
         
       </div>
       
     </div>
     <div class="article-entry markdown-body" itemprop="articleBody">
       
-        <p>看完廖雪峰老师的git教程后，对git的使用有所了解，因此整理一下，作为参考</p>
-<h3 id="一、Git简介"><a href="#一、Git简介" class="headerlink" title="一、Git简介"></a>一、Git简介</h3><h4 id="1-Git的诞生"><a href="#1-Git的诞生" class="headerlink" title="1. Git的诞生"></a>1. Git的诞生</h4><h4 id="2-集中式vs分布式"><a href="#2-集中式vs分布式" class="headerlink" title="2. 集中式vs分布式"></a>2. 集中式vs分布式</h4><h3 id="二、安装Git"><a href="#二、安装Git" class="headerlink" title="二、安装Git"></a>二、安装Git</h3><h3 id="三、创建版本库"><a href="#三、创建版本库" class="headerlink" title="三、创建版本库"></a>三、创建版本库</h3><h3 id="四、时光机穿梭"><a href="#四、时光机穿梭" class="headerlink" title="四、时光机穿梭"></a>四、时光机穿梭</h3><h4 id="1-版本回退"><a href="#1-版本回退" class="headerlink" title="1. 版本回退"></a>1. 版本回退</h4><h4 id="2-工作区和暂存区"><a href="#2-工作区和暂存区" class="headerlink" title="2. 工作区和暂存区"></a>2. 工作区和暂存区</h4><h4 id="3-管理修改"><a href="#3-管理修改" class="headerlink" title="3. 管理修改"></a>3. 管理修改</h4><h4 id="4-撤销修改"><a href="#4-撤销修改" class="headerlink" title="4.撤销修改"></a>4.撤销修改</h4><h4 id="5-删除文件"><a href="#5-删除文件" class="headerlink" title="5.删除文件"></a>5.删除文件</h4><h3 id="五、远程仓库"><a href="#五、远程仓库" class="headerlink" title="五、远程仓库"></a>五、远程仓库</h3><h4 id="1-添加远程库"><a href="#1-添加远程库" class="headerlink" title="1. 添加远程库"></a>1. 添加远程库</h4><h4 id="2-从远程库克隆"><a href="#2-从远程库克隆" class="headerlink" title="2. 从远程库克隆"></a>2. 从远程库克隆</h4><h3 id="六、分支管理"><a href="#六、分支管理" class="headerlink" title="六、分支管理"></a>六、分支管理</h3><h4 id="1-创建与合并分支"><a href="#1-创建与合并分支" class="headerlink" title="1. 创建与合并分支"></a>1. 创建与合并分支</h4><h4 id="2-解决冲突"><a href="#2-解决冲突" class="headerlink" title="2. 解决冲突"></a>2. 解决冲突</h4><h4 id="3-分支管理策略"><a href="#3-分支管理策略" class="headerlink" title="3. 分支管理策略"></a>3. 分支管理策略</h4><h4 id="4-Bug分支"><a href="#4-Bug分支" class="headerlink" title="4. Bug分支"></a>4. Bug分支</h4><h4 id="5-Feature分支"><a href="#5-Feature分支" class="headerlink" title="5. Feature分支"></a>5. Feature分支</h4><h4 id="6-多人协作"><a href="#6-多人协作" class="headerlink" title="6.多人协作"></a>6.多人协作</h4><h3 id="七、标签管理"><a href="#七、标签管理" class="headerlink" title="七、标签管理"></a>七、标签管理</h3><h4 id="1-创建标签"><a href="#1-创建标签" class="headerlink" title="1. 创建标签"></a>1. 创建标签</h4><h4 id="2-操作标签"><a href="#2-操作标签" class="headerlink" title="2. 操作标签"></a>2. 操作标签</h4>
+        <ul>
+<li>深拷贝：赋值时完全复制，完全的copy，对其中一个做出改变，不会影响另一个</li>
+<li>浅拷贝：赋值时，引用赋值，相当于取了一个别名。对其中一个修改，会影响另一个。</li>
+<li>PHP中， = 赋值时，普通对象是深拷贝，但对对象来说，是浅拷贝。也就是说，对象的赋值是引用赋值。（对象作为参数传递时，也是引用传递，无论函数定义时参数前面是否有&amp;符号）</li>
+<li>php4中，对象的 = 赋值是实现一份副本，这样存在很多问题，在不知不觉中我们可能会拷贝很多份副本。</li>
+<li>php5中，对象的 = 赋值和传递都是引用。要想实现拷贝副本，php提供了clone函数实现。</li>
+<li>clone完全copy了一份副本。但是clone时，我们可能不希望copy源对象的所有内容，那我们可以利用__clone来操作。</li>
+<li>在<strong>clone（）中，我们可以进行一些操作。注意，这些操作，也就是</strong>clone函数是作用于拷贝的副本对象上的</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line">实现对象这种的深拷贝，有两种方法：</div><div class="line">例子<span class="number">1</span>：重写<span class="keyword">clone</span>函数</div><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</div><div class="line">    <span class="keyword">public</span> $a=<span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestOne</span></span>&#123;</div><div class="line">    <span class="keyword">public</span> $b=<span class="number">1</span>;</div><div class="line">    <span class="keyword">public</span> $obj;</div><div class="line">    <span class="comment">//包含了一个对象属性，clone时，它会是浅拷贝</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;obj = <span class="keyword">new</span> Test();</div><div class="line">    &#125;</div><div class="line">     </div><div class="line">    <span class="comment">//方法一：重写clone函数</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__clone</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;obj = <span class="keyword">clone</span> <span class="keyword">$this</span>-&gt;obj;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"> </div><div class="line">$m = <span class="keyword">new</span> TestOne();</div><div class="line">$n = <span class="keyword">clone</span> $m;</div><div class="line"> </div><div class="line">$n-&gt;b = <span class="number">2</span>;</div><div class="line"><span class="keyword">echo</span> $m-&gt;b;<span class="comment">//输出原来的1</span></div><div class="line"><span class="keyword">echo</span> PHP_EOL;</div><div class="line"><span class="comment">//可以看到，普通属性实现了深拷贝，改变普通属性b，不会对源对象有影响</span></div><div class="line"> </div><div class="line"><span class="comment">//由于改写了clone函数，现在对象属性也实现了真正的深拷贝，对新对象的改变，不会影响源对象</span></div><div class="line">$n-&gt;obj-&gt;a = <span class="number">3</span>;</div><div class="line"><span class="keyword">echo</span> $m-&gt;obj-&gt;a;<span class="comment">//输出1，不随新对象改变，还是保持了原来的属性</span></div><div class="line"> </div><div class="line">例子<span class="number">2</span>：序列化和反序列化</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</div><div class="line">    <span class="keyword">public</span> $a=<span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestOne</span></span>&#123;</div><div class="line">    <span class="keyword">public</span> $b=<span class="number">1</span>;</div><div class="line">    <span class="keyword">public</span> $obj;</div><div class="line">    <span class="comment">//包含了一个对象属性，clone时，它会是浅拷贝</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;obj = <span class="keyword">new</span> Test();</div><div class="line">    &#125;</div><div class="line">     </div><div class="line">&#125;</div><div class="line"> </div><div class="line">$m = <span class="keyword">new</span> TestOne();</div><div class="line"><span class="comment">//方法二，序列化反序列化实现对象深拷贝</span></div><div class="line">$n = serialize($m);</div><div class="line">$n = unserialize($n);</div><div class="line"> </div><div class="line">$n-&gt;b = <span class="number">2</span>;</div><div class="line"><span class="keyword">echo</span> $m-&gt;b;<span class="comment">//输出原来的1</span></div><div class="line"><span class="keyword">echo</span> PHP_EOL;</div><div class="line"><span class="comment">//可以看到，普通属性实现了深拷贝，改变普通属性b，不会对源对象有影响</span></div><div class="line"> </div><div class="line"> </div><div class="line">$n-&gt;obj-&gt;a = <span class="number">3</span>;</div><div class="line"><span class="keyword">echo</span> $m-&gt;obj-&gt;a;<span class="comment">//输出1，不随新对象改变，还是保持了原来的属性,可以看到，序列化和反序列化可以实现对象的深拷贝</span></div><div class="line">  </div><div class="line">例子<span class="number">3</span>：json_encode之后再json_decode,实现赋值</div></pre></td></tr></table></figure>
       
     </div>
     <div class="article-footer">
@@ -353,7 +361,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="http://www/lyj1215.com/2017/09/07/git/" title="git使用" target="_blank" rel="external">http://www/lyj1215.com/2017/09/07/git/</a>
+      <a href="http://www/lyj1215.com/2017/09/08/copy/" title="深拷贝和浅拷贝" target="_blank" rel="external">http://www/lyj1215.com/2017/09/08/copy/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -386,13 +394,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2017/09/07/mysql/" title="MySQL执行顺序"><i class="fa fa-angle-left" aria-hidden="true"></i>&nbsp;&nbsp;上一篇</a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2017/07/16/search/" title="常见查找算法">下一篇&nbsp;&nbsp;<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+      <a href="/2017/09/08/laravel-3/" title="laravel框架中常用PHP语法">下一篇&nbsp;&nbsp;<i class="fa fa-angle-right" aria-hidden="true"></i></a>
     </li>
     
   </ul>
