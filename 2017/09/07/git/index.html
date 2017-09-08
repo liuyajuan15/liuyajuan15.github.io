@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>git使用 | lyjの博客</title>
+  <meta name="description" content="看完廖雪峰老师的git教程后，对git的使用有所了解，因此整理一下，作为参考 一、Git简介1. Git的诞生2. 集中式vs分布式二、安装Git三、创建版本库四、时光机穿梭1. 版本回退2. 工作区和暂存区3. 管理修改4.撤销修改5.删除文件五、远程仓库1. 添加远程库2. 从远程库克隆六、分支管理1. 创建与合并分支2. 解决冲突3. 分支管理策略4. Bug分支5. Feature分支6.">
+<meta name="keywords" content="git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git使用">
+<meta property="og:url" content="http://www/lyj1215.com/2017/09/07/git/index.html">
+<meta property="og:site_name" content="lyjの博客">
+<meta property="og:description" content="看完廖雪峰老师的git教程后，对git的使用有所了解，因此整理一下，作为参考 一、Git简介1. Git的诞生2. 集中式vs分布式二、安装Git三、创建版本库四、时光机穿梭1. 版本回退2. 工作区和暂存区3. 管理修改4.撤销修改5.删除文件五、远程仓库1. 添加远程库2. 从远程库克隆六、分支管理1. 创建与合并分支2. 解决冲突3. 分支管理策略4. Bug分支5. Feature分支6.">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-09-07T07:00:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="git使用">
+<meta name="twitter:description" content="看完廖雪峰老师的git教程后，对git的使用有所了解，因此整理一下，作为参考 一、Git简介1. Git的诞生2. 集中式vs分布式二、安装Git三、创建版本库四、时光机穿梭1. 版本回退2. 工作区和暂存区3. 管理修改4.撤销修改5.删除文件五、远程仓库1. 添加远程库2. 从远程库克隆六、分支管理1. 创建与合并分支2. 解决冲突3. 分支管理策略4. Bug分支5. Feature分支6.">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://www/lyj1215.com/2017/09/07/git/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="lyjの博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <!-- font-awesome CSS -->
+  <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  
+    
+    
+
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat"><i class="fa fa-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+            <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <!-- <span class="ins-close ins-selectable"><i class="fa fa-times"></i></span> -->
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav">
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="fa fa-fw fa-dashboard"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="fa fa-fw fa-delicious"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="fa fa-fw fa-gg"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about">
+            
+            <i class="fa fa-fw fa-coffee"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="/" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="fa fa-github"></i></a></li>
+        
+        <li><a href="/" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="fa fa-weibo"></i></a></li>
+        
+        <li><a href="/" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="fa fa-twitter"></i></a></li>
+        
+        <li><a href="/" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="fa fa-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="fa fa-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安全/">安全</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">数据结构与算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂文</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/框架分析/">框架分析</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/环境搭建/">环境搭建</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-mode/">设计模式</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget-body">
+      <ul class="recent-post-list list-unstyled no-thumbnail">
+        
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/框架分析/">框架分析</a>
+              </p>
+              <p class="item-title">
+                <a href="/2017/09/08/laravel-3/" class="title">laravel框架中常用PHP语法</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2017-09-08T01:51:06.000Z" itemprop="datePublished">2017-09-08</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/design-mode/">设计模式</a>
+              </p>
+              <p class="item-title">
+                <a href="/2017/09/07/uml/" class="title">UML类图关系总结</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2017-09-07T14:18:11.000Z" itemprop="datePublished">2017-09-07</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/安全/">安全</a>
+              </p>
+              <p class="item-title">
+                <a href="/2017/09/07/sql-injection/" class="title">SQL注入</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2017-09-07T14:01:39.000Z" itemprop="datePublished">2017-09-07</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/MySQL/">MySQL</a>
+              </p>
+              <p class="item-title">
+                <a href="/2017/09/07/mysql/" class="title">MySQL执行顺序</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2017-09-07T13:52:19.000Z" itemprop="datePublished">2017-09-07</time>
+              </p>
+            </div>
+          </li>
+          
+          <li>
+            
+            <div class="item-inner">
+              <p class="item-category">
+                <a class="category-link" href="/categories/其他/">其他</a>
+              </p>
+              <p class="item-title">
+                <a href="/2017/09/07/git/" class="title">git使用</a>
+              </p>
+              <p class="item-date">
+                <time datetime="2017-09-07T04:00:33.000Z" itemprop="datePublished">2017-09-07</time>
+              </p>
+            </div>
+          </li>
+          
+      </ul>
+    </div>
+  </div>
+  
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget-body">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UML/">UML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/单例/">单例</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安全，SQL注入/">安全，SQL注入</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">杂文</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/环境搭建/">环境搭建</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-mode/">设计模式</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-git" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      git使用
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="fa fa-calendar-check-o"></i>
+	<a href="/2017/09/07/git/" class="article-date">
+	  <time datetime="2017-09-07T04:00:33.000Z" itemprop="datePublished">2017-09-07</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/其他/">其他</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="fa fa-tag"></i>
+	<a class="article-tag-link" href="/tags/git/">git</a>
+  </span>
+
+
+        
+
+        <span class="post-comment"><i class="fa fa-commenting-o"></i> <a href="/2017/09/07/git/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+      
+    </div>
+    <div class="article-entry markdown-body" itemprop="articleBody">
+      
+        <p>看完廖雪峰老师的git教程后，对git的使用有所了解，因此整理一下，作为参考</p>
+<h3 id="一、Git简介"><a href="#一、Git简介" class="headerlink" title="一、Git简介"></a>一、Git简介</h3><h4 id="1-Git的诞生"><a href="#1-Git的诞生" class="headerlink" title="1. Git的诞生"></a>1. Git的诞生</h4><h4 id="2-集中式vs分布式"><a href="#2-集中式vs分布式" class="headerlink" title="2. 集中式vs分布式"></a>2. 集中式vs分布式</h4><h3 id="二、安装Git"><a href="#二、安装Git" class="headerlink" title="二、安装Git"></a>二、安装Git</h3><h3 id="三、创建版本库"><a href="#三、创建版本库" class="headerlink" title="三、创建版本库"></a>三、创建版本库</h3><h3 id="四、时光机穿梭"><a href="#四、时光机穿梭" class="headerlink" title="四、时光机穿梭"></a>四、时光机穿梭</h3><h4 id="1-版本回退"><a href="#1-版本回退" class="headerlink" title="1. 版本回退"></a>1. 版本回退</h4><h4 id="2-工作区和暂存区"><a href="#2-工作区和暂存区" class="headerlink" title="2. 工作区和暂存区"></a>2. 工作区和暂存区</h4><h4 id="3-管理修改"><a href="#3-管理修改" class="headerlink" title="3. 管理修改"></a>3. 管理修改</h4><h4 id="4-撤销修改"><a href="#4-撤销修改" class="headerlink" title="4.撤销修改"></a>4.撤销修改</h4><h4 id="5-删除文件"><a href="#5-删除文件" class="headerlink" title="5.删除文件"></a>5.删除文件</h4><h3 id="五、远程仓库"><a href="#五、远程仓库" class="headerlink" title="五、远程仓库"></a>五、远程仓库</h3><h4 id="1-添加远程库"><a href="#1-添加远程库" class="headerlink" title="1. 添加远程库"></a>1. 添加远程库</h4><h4 id="2-从远程库克隆"><a href="#2-从远程库克隆" class="headerlink" title="2. 从远程库克隆"></a>2. 从远程库克隆</h4><h3 id="六、分支管理"><a href="#六、分支管理" class="headerlink" title="六、分支管理"></a>六、分支管理</h3><h4 id="1-创建与合并分支"><a href="#1-创建与合并分支" class="headerlink" title="1. 创建与合并分支"></a>1. 创建与合并分支</h4><h4 id="2-解决冲突"><a href="#2-解决冲突" class="headerlink" title="2. 解决冲突"></a>2. 解决冲突</h4><h4 id="3-分支管理策略"><a href="#3-分支管理策略" class="headerlink" title="3. 分支管理策略"></a>3. 分支管理策略</h4><h4 id="4-Bug分支"><a href="#4-Bug分支" class="headerlink" title="4. Bug分支"></a>4. Bug分支</h4><h4 id="5-Feature分支"><a href="#5-Feature分支" class="headerlink" title="5. Feature分支"></a>5. Feature分支</h4><h4 id="6-多人协作"><a href="#6-多人协作" class="headerlink" title="6.多人协作"></a>6.多人协作</h4><h3 id="七、标签管理"><a href="#七、标签管理" class="headerlink" title="七、标签管理"></a>七、标签管理</h3><h4 id="1-创建标签"><a href="#1-创建标签" class="headerlink" title="1. 创建标签"></a>1. 创建标签</h4><h4 id="2-操作标签"><a href="#2-操作标签" class="headerlink" title="2. 操作标签"></a>2. 操作标签</h4>
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://www/lyj1215.com/2017/09/07/git/" title="git使用" target="_blank" rel="external">http://www/lyj1215.com/2017/09/07/git/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+       
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMDc0NC83Mjk2">
+  <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+      
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2017/09/07/mysql/" title="MySQL执行顺序"><i class="fa fa-angle-left" aria-hidden="true"></i>&nbsp;&nbsp;上一篇</a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2017/07/16/search/" title="常见查找算法">下一篇&nbsp;&nbsp;<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning hidden-xs" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  
+  
+  <div class="bar-right">
+    <div class="share-component" data-sites="weibo,qq,wechat,facebook,twitter" data-mobile-sites="weibo,qq,qzone"></div>
+  </div>
+  
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-tit">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="donate-payimg">
+            <img src="/img/alipay.png" alt="扫码支持" title="扫一扫" />
+          </div>
+          <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+          <div class="donate-payselect">
+            <div class="pay_item checked" data-id="alipay" data-src="/img/alipay.png">
+              <div class="radio">
+                <input type="radio" name="payment" id="input-alipay" value="alipay" checked>
+                <label class="pay_logo clickable" for="input-alipay"><img src="/images/donate/alipay.jpg" alt="支付宝" /></label>
+              </div>
+            </div>
+            <div class="pay_item" data-id="weipay" data-src="/img/wechat.png">
+              <div class="radio">
+                <input type="radio" name="payment" id="input-weipay" value="weipay">
+                <label class="pay_logo clickable" for="input-weipay"><img src="/images/donate/weipay.jpg" alt="微信支付" /></label>
+              </div>
+            </div>
+          </div>
+          <div class="text-grey">
+            <p>打开<span id="donate-pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="/" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="fa fa-github"></i></a></li>
+        
+        <li><a href="/" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="fa fa-weibo"></i></a></li>
+        
+        <li><a href="/" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="fa fa-twitter"></i></a></li>
+        
+        <li><a href="/" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="fa fa-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="fa fa-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.js"></script>
+<script src="/js/application.js"></script>
+  
+    
+    
+    
+        <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+    
+    
+        
+
+
+    
+    
+        
+    
+<script defer type="text/javascript">
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+
+    
+    
+
+
+
+</body>
+</html>
