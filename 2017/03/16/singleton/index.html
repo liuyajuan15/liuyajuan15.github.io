@@ -25,10 +25,12 @@
 <meta property="og:site_name" content="lyjの博客">
 <meta property="og:description" content="一、概览  设计原则：无 常用场景：应用中有对象需要是全局的且唯一 使用概率：99.99999% 复杂度：低 变化点：无 选择关键点：一个对象在应用中出现多个实例是否会引起逻辑上或者是程序上的错误 逆鳞：在以为是单例的情况下，却产生了多个实例 相关设计模式： 原型模式：单例模式是只有一个实例，原型模式每拷贝一次都会创造一个新的实例。    二、定义：单例模式：单例模式保证一个类只有一个实例，同时这">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://www/img/singleton.jpg">
 <meta property="og:updated_time" content="2017-03-16T15:30:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="单例模式">
 <meta name="twitter:description" content="一、概览  设计原则：无 常用场景：应用中有对象需要是全局的且唯一 使用概率：99.99999% 复杂度：低 变化点：无 选择关键点：一个对象在应用中出现多个实例是否会引起逻辑上或者是程序上的错误 逆鳞：在以为是单例的情况下，却产生了多个实例 相关设计模式： 原型模式：单例模式是只有一个实例，原型模式每拷贝一次都会创造一个新的实例。    二、定义：单例模式：单例模式保证一个类只有一个实例，同时这">
+<meta name="twitter:image" content="http://www/img/singleton.jpg">
   <!-- Canonical links -->
   <link rel="canonical" href="http://www/lyj1215.com/2017/03/16/singleton/index.html">
   
@@ -358,7 +360,8 @@
 </li>
 </ul>
 <p>二、定义：单例模式：单例模式保证一个类只有一个实例，同时这个类还必须提供一个访问该类的全局访问点。</p>
-<p>三、UML类图<br>&lt;%- image_tag(‘/img/singleton.jpg’) %&gt;</p>
+<p>三、UML类图</p>
+<p> <img src="/img/singleton.jpg" alt="创建应用" title="create"></p>
 <p>单例模式的三个要点：</p>
 <ol>
 <li>需要一个保存类的唯一实例的静态成员变量</li>

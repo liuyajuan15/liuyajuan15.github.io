@@ -17,18 +17,18 @@
   
   
   <title>SQL注入 | lyjの博客</title>
-  <meta name="description" content="一、目的简介 让这些输入被认为是一个SQL查询，或者是查询的一部分,针对程序员编程的忽略通过SQL语句，实现无账号登录甚至篡改数据库。  二、SQL注入攻击的总体思路： 寻找到SQL注入的位置 判断服务器类型和后台数据库类型 针对不同的服务器和数据库特点进行SQL注入攻击  三、SQL注入攻击实例   12345678免账号登录：sql = &quot;select * from user_table wh">
+  <meta name="description" content="一、目的简介 让这些输入被认为是一个SQL查询，或者是查询的一部分,针对程序员编程的忽略通过SQL语句，实现无账号登录甚至篡改数据库。  二、SQL注入攻击的总体思路： 寻找到SQL注入的位置 判断服务器类型和后台数据库类型 针对不同的服务器和数据库特点进行SQL注入攻击  三、SQL注入攻击实例1234567免账号登录：sql = &quot;select * from user_table where">
 <meta name="keywords" content="安全，SQL注入">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQL注入">
 <meta property="og:url" content="http://www/lyj1215.com/2017/09/07/sql-injection/index.html">
 <meta property="og:site_name" content="lyjの博客">
-<meta property="og:description" content="一、目的简介 让这些输入被认为是一个SQL查询，或者是查询的一部分,针对程序员编程的忽略通过SQL语句，实现无账号登录甚至篡改数据库。  二、SQL注入攻击的总体思路： 寻找到SQL注入的位置 判断服务器类型和后台数据库类型 针对不同的服务器和数据库特点进行SQL注入攻击  三、SQL注入攻击实例   12345678免账号登录：sql = &quot;select * from user_table wh">
+<meta property="og:description" content="一、目的简介 让这些输入被认为是一个SQL查询，或者是查询的一部分,针对程序员编程的忽略通过SQL语句，实现无账号登录甚至篡改数据库。  二、SQL注入攻击的总体思路： 寻找到SQL注入的位置 判断服务器类型和后台数据库类型 针对不同的服务器和数据库特点进行SQL注入攻击  三、SQL注入攻击实例1234567免账号登录：sql = &quot;select * from user_table where">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-07T14:15:47.000Z">
+<meta property="og:updated_time" content="2017-09-13T07:28:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="SQL注入">
-<meta name="twitter:description" content="一、目的简介 让这些输入被认为是一个SQL查询，或者是查询的一部分,针对程序员编程的忽略通过SQL语句，实现无账号登录甚至篡改数据库。  二、SQL注入攻击的总体思路： 寻找到SQL注入的位置 判断服务器类型和后台数据库类型 针对不同的服务器和数据库特点进行SQL注入攻击  三、SQL注入攻击实例   12345678免账号登录：sql = &quot;select * from user_table wh">
+<meta name="twitter:description" content="一、目的简介 让这些输入被认为是一个SQL查询，或者是查询的一部分,针对程序员编程的忽略通过SQL语句，实现无账号登录甚至篡改数据库。  二、SQL注入攻击的总体思路： 寻找到SQL注入的位置 判断服务器类型和后台数据库类型 针对不同的服务器和数据库特点进行SQL注入攻击  三、SQL注入攻击实例1234567免账号登录：sql = &quot;select * from user_table where">
   <!-- Canonical links -->
   <link rel="canonical" href="http://www/lyj1215.com/2017/09/07/sql-injection/index.html">
   
@@ -351,7 +351,7 @@
 <li>判断服务器类型和后台数据库类型</li>
 <li>针对不同的服务器和数据库特点进行SQL注入攻击</li>
 </ol>
-<h3 id="三、SQL注入攻击实例"><a href="#三、SQL注入攻击实例" class="headerlink" title="三、SQL注入攻击实例"></a>三、SQL注入攻击实例</h3>   <figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">免账号登录：</div><div class="line">sql = "<span class="keyword">select</span> * <span class="keyword">from</span> user_table <span class="keyword">where</span> username=<span class="string">' "+userName+" '</span> <span class="keyword">and</span> <span class="keyword">password</span>=<span class="string">' "+password+" '</span><span class="string">";</span></div><div class="line"><span class="string">当用户输入的用户名为 ‘or 1=1 --</span></div><div class="line"><span class="string">sql = "</span><span class="keyword">select</span> * <span class="keyword">from</span> user_table <span class="keyword">where</span> username=‘’ <span class="keyword">or</span> <span class="number">1</span>=<span class="number">1</span> <span class="comment">-- ' and password=' "+password+" ‘";</span></div><div class="line">由于<span class="number">1</span>=<span class="number">1</span>肯定会成功 ，<span class="comment">--是注释后面的语句不用执行，因此不用账号密码就可以登录成功。</span></div><div class="line">当用户输入的用户名为 <span class="string">' ;DROP DATABASE (DB Name) —'</span></div><div class="line">以上语句则会删除数据库</div><div class="line">   </div></pre></td></tr></table></figure>
+<h3 id="三、SQL注入攻击实例"><a href="#三、SQL注入攻击实例" class="headerlink" title="三、SQL注入攻击实例"></a>三、SQL注入攻击实例</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">免账号登录：</div><div class="line">sql = <span class="string">"select * from user_table where username=' "</span>+userName+<span class="string">" ' and password=' "</span>+password+<span class="string">" '"</span>;</div><div class="line">当用户输入的用户名为 ‘<span class="keyword">or</span> <span class="number">1</span>=<span class="number">1</span> --</div><div class="line">sql = <span class="string">"select * from user_table where username=‘’ or 1=1 -- ' and password=' "</span>+password+<span class="string">" ‘"</span>;</div><div class="line">由于<span class="number">1</span>=<span class="number">1</span>肯定会成功 ，--是注释后面的语句不用执行，因此不用账号密码就可以登录成功。</div><div class="line">当用户输入的用户名为 <span class="string">' ;DROP DATABASE (DB Name) —'</span></div><div class="line">以上语句则会删除数据库</div></pre></td></tr></table></figure>
 <h3 id="四、防范："><a href="#四、防范：" class="headerlink" title="四、防范："></a>四、防范：</h3><ul>
 <li>服务器配置防范<ol>
 <li>关闭注册全局变量，在PHP中提交的变量，包括post或者get提交的变量，都将自动注册为全局变量，能够直接访问，对服务器是不安全的，所以应该关闭 register_globals=off</li>
