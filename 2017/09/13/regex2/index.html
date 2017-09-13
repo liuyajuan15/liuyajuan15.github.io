@@ -25,7 +25,7 @@
 <meta property="og:site_name" content="lyjの博客">
 <meta property="og:description" content="正则掌握程度测试题,以下测试题来自于 https://www.zybuluo.com/Zjmainstay/note/709093， 答案是我自己的分析，欢迎各位进行批评与指导,部分习题答案后续不上  一. 分组提取/非捕获组 分组，是正则里一个非常重要的概念，我们需要针对某个区域提取数据，往往需要依赖分组。而分组，其实就是正则里()括住的部分。   分组提取  123456需求：在分组1中匹配">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-13T06:25:23.000Z">
+<meta property="og:updated_time" content="2017-09-13T06:32:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="正则表达式测试题">
 <meta name="twitter:description" content="正则掌握程度测试题,以下测试题来自于 https://www.zybuluo.com/Zjmainstay/note/709093， 答案是我自己的分析，欢迎各位进行批评与指导,部分习题答案后续不上  一. 分组提取/非捕获组 分组，是正则里一个非常重要的概念，我们需要针对某个区域提取数据，往往需要依赖分组。而分组，其实就是正则里()括住的部分。   分组提取  123456需求：在分组1中匹配">
@@ -122,7 +122,7 @@
         
         
         
-        <li class="menu-item menu-item-about">
+        <li class="menu-item menu-item-about active">
           <a href="/about">
             
             <i class="fa fa-fw fa-coffee"></i>
@@ -185,7 +185,7 @@
   <div class="widget">
     <h3 class="widget-title">归档</h3>
     <div class="widget-body">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -219,7 +219,7 @@
                 <a class="category-link" href="/categories/正则表达式/">正则表达式</a>
               </p>
               <p class="item-title">
-                <a href="/2017/09/12/regex1/" class="title">正则表达式</a>
+                <a href="/2017/09/12/regex1/" class="title">正则表达式一</a>
               </p>
               <p class="item-date">
                 <time datetime="2017-09-12T07:41:25.000Z" itemprop="datePublished">2017-09-12</time>
@@ -376,7 +376,7 @@
 <figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">需求：分别使用单行模式和普通模式匹配id=<span class="string">"author"</span>的div中数据，div标签不在同一行</div><div class="line">源串：</div><div class="line">&lt;div id=<span class="string">"author"</span>&gt;</div><div class="line">Zjmainstay</div><div class="line">&lt;/div&gt;</div><div class="line">预期：Zjmainstay</div><div class="line">正则<span class="number">1</span>：<span class="string">'@&lt;div[^&gt;]id="author"&gt;(.*?)&lt;/div&gt;@ms'</span></div><div class="line">正则<span class="number">2</span>：</div></pre></td></tr></table></figure>
 <h3 id="六-存在（或）"><a href="#六-存在（或）" class="headerlink" title="六. 存在（或）"></a>六. 存在（或）</h3><ol>
 <li><p>匹配多种或条件的数据，没有特殊限制</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">需求：匹配每行中包含“作者”或者“读者”的数据</div><div class="line">源串：</div><div class="line">本文的作者是Zjmainstay</div><div class="line">本文有很多读者</div><div class="line">读者可以是任何一个地方的人</div><div class="line">这里的任何一个地方说明读者也能在国外</div><div class="line">什么乱七八糟的推理</div><div class="line">你不匹配我，凭什么要我推荐你的博客 www.zjmainstay.cn</div><div class="line">预期：匹配</div><div class="line">本文的作者是Zjmainstay</div><div class="line">本文有很多读者</div><div class="line">读者可以是任何一个地方的人</div><div class="line">这里的任何一个地方说明读者也能在国外</div><div class="line">正则：</div></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">需求：匹配每行中包含“作者”或者“读者”的数据</div><div class="line">源串：</div><div class="line">本文的作者是Zjmainstay</div><div class="line">本文有很多读者</div><div class="line">读者可以是任何一个地方的人</div><div class="line">这里的任何一个地方说明读者也能在国外</div><div class="line">什么乱七八糟的推理</div><div class="line">你不匹配我，凭什么要我推荐你的博客 www.zjmainstay.cn</div><div class="line">预期：匹配</div><div class="line">本文的作者是Zjmainstay</div><div class="line">本文有很多读者</div><div class="line">读者可以是任何一个地方的人</div><div class="line">这里的任何一个地方说明读者也能在国外</div><div class="line">正则：$re = <span class="string">'/^.*?(作者|读者).*?$/m'</span></div></pre></td></tr></table></figure>
 </li>
 <li><p>匹配多种或条件的数据，有特殊限制（不使用环视）</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">需求：匹配每行中“读者”在开头或结尾的数据</div><div class="line">源串：</div><div class="line">本文作者是Zjmainstay，有很多读者</div><div class="line">读者可以是任何一个地方的人</div><div class="line">这里的任何一个地方说明读者也能在国外</div><div class="line">预期：匹配</div><div class="line">本文作者是Zjmainstay，有很多读者</div><div class="line">读者可以是任何一个地方的人</div><div class="line">正则：</div></pre></td></tr></table></figure>
@@ -499,7 +499,7 @@
     
     
     <li class="next">
-      <a href="/2017/09/12/regex1/" title="正则表达式">下一篇&nbsp;&nbsp;<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+      <a href="/2017/09/12/regex1/" title="正则表达式一">下一篇&nbsp;&nbsp;<i class="fa fa-angle-right" aria-hidden="true"></i></a>
     </li>
     
   </ul>
