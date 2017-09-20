@@ -4,6 +4,68 @@
 
     
   <url>
+    <loc>http://www/lyj1215.com/2017/09/19/regex5/</loc>
+    <lastmod>2017-09-20T08:34:25.000Z</lastmod>
+    <data>
+        <display>
+        <title>php中的正则</title>
+        <pubTime>2017-09-19T06:26:49.000Z</pubTime>
+        
+        <tag>正则表达式</tag>
+         
+        <tag>PHP</tag>
+         
+         
+           
+             
+              <breadCrumb title="正则表达式" url="http://www/lyj1215.com/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www/lyj1215.com/2017/09/20/string/</loc>
+    <lastmod>2017-09-20T08:33:44.000Z</lastmod>
+    <data>
+        <display>
+        <title>PHP字符串</title>
+        <pubTime>2017-09-20T08:28:52.000Z</pubTime>
+        
+        <tag>PHP</tag>
+         
+         
+           
+             
+              <breadCrumb title="PHP" url="http://www/lyj1215.com/categories/PHP/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www/lyj1215.com/2017/09/12/regex1/</loc>
+    <lastmod>2017-09-20T07:05:42.000Z</lastmod>
+    <data>
+        <display>
+        <title>正则表达式基本介绍</title>
+        <pubTime>2017-09-12T07:41:25.000Z</pubTime>
+        
+        <tag>正则表达式</tag>
+         
+         
+           
+             
+              <breadCrumb title="正则表达式" url="http://www/lyj1215.com/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www/lyj1215.com/2017/09/20/busy/</loc>
     <lastmod>2017-09-20T04:44:49.000Z</lastmod>
     <data>
@@ -55,46 +117,6 @@
         <display>
         <title>正则表达式的匹配原理</title>
         <pubTime>2017-09-17T05:44:41.000Z</pubTime>
-        
-        <tag>正则表达式</tag>
-         
-         
-           
-             
-              <breadCrumb title="正则表达式" url="http://www/lyj1215.com/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www/lyj1215.com/2017/09/19/regex5/</loc>
-    <lastmod>2017-09-19T09:30:13.000Z</lastmod>
-    <data>
-        <display>
-        <title>php中的正则</title>
-        <pubTime>2017-09-19T06:26:49.000Z</pubTime>
-        
-        <tag>正则表达式</tag>
-         
-         
-           
-             
-              <breadCrumb title="正则表达式" url="http://www/lyj1215.com/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www/lyj1215.com/2017/09/12/regex1/</loc>
-    <lastmod>2017-09-19T06:13:55.000Z</lastmod>
-    <data>
-        <display>
-        <title>正则表达式基本介绍</title>
-        <pubTime>2017-09-12T07:41:25.000Z</pubTime>
         
         <tag>正则表达式</tag>
          
