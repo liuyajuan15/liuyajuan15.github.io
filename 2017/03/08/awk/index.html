@@ -111,7 +111,7 @@
         
         
         
-        <li class="menu-item menu-item-links active">
+        <li class="menu-item menu-item-links">
           <a href="/links">
             
             <i class="fa fa-fw fa-gg"></i>
@@ -269,7 +269,10 @@
 <li>FS 分隔符（默认为空格）</li>
 <li>RS  输入记录的分隔符(默认为空格)</li>
 <li>NF 字段个数</li>
-<li>NR 行号<br>自定义及外部变量</li>
+<li>NR 行号</li>
+</ol>
+<p>自定义及外部变量</p>
+<ol>
 <li>awk -v name=$myname ‘BEGIN{print name}’    $myname 是自己定义的变量</li>
 <li>awk -v host=$HOSTNAME ‘BEGIN{print host}’  $HOSTNAME 是系统变量</li>
 <li>awk -v name=‘lalalal’ ‘BEGIN{print name}’   还可以直接定义</li>
@@ -287,11 +290,15 @@
 <li>while  给etc/passwd 中的每一个字段都加上序号<br>╭─◆liuyajuan@liuyajuandeMacBook-Pro.local/Users/liuyajuan/Downloads<br>╰─&gt;awk -F: ‘{i=1;while(i&lt;=NF){printf(“ %d:%s “,i,$i);i++}{print “ “ }}’ /etc/passwd</li>
 <li>for</li>
 </ol>
-<h3 id="六、BEGIN-END"><a href="#六、BEGIN-END" class="headerlink" title="六、BEGIN ,END"></a>六、BEGIN ,END</h3><pre><code>作用:给程序赋予初始化状态和在程序结束之后执行一些扫尾工作。
-任何在BEGIN之后列出的操作（在{}内）将在Unix awk开始扫描输入之前执行
-而END之后列出的操作将在扫描完全部的输入之后执行
-因此，通常使用BEGIN来显示变量和预置（初始化）变量，使用END来输出最终结果。
-</code></pre><h3 id="七、练习题："><a href="#七、练习题：" class="headerlink" title="七、练习题："></a>七、练习题：</h3><p>1、截取IP地址<br>╭─◆liuyajuan@liuyajuandeMacBook-Pro.local/Users/liuyajuan<br>╰─&gt;ifconfig en0                                                                                               17-08-16 10:10<br>en0: flags=8963<up,broadcast,smart,running,promisc,simplex,multicast> mtu 1500<br>    ether ac:bc:32:bf:5e:d9<br>    inet 169.254.198.146 netmask 0xffff0000 broadcast 169.254.255.255<br>    nd6 options=201<performnud,dad><br>    media: autoselect<br>    status: active<br>╭─◆liuyajuan@liuyajuandeMacBook-Pro.local/Users/liuyajuan<br>╰─&gt;ifconfig en0 | awk -F ‘ ‘ ‘/inet / {print $2}’                                                             17-08-16 10:11<br>169.254.198.146</performnud,dad></up,broadcast,smart,running,promisc,simplex,multicast></p>
+<h3 id="六、BEGIN-END"><a href="#六、BEGIN-END" class="headerlink" title="六、BEGIN ,END"></a>六、BEGIN ,END</h3><blockquote>
+<p>作用:给程序赋予初始化状态和在程序结束之后执行一些扫尾工作。任何在BEGIN之后列出的操作（在{}内）将在Unix awk开始扫描输入之前执行,而END之后列出的操作将在扫描完全部的输入之后执行因此，通常使用BEGIN来显示变量和预置（初始化）变量，使用END来输出最终结果。</p>
+</blockquote>
+<h3 id="七、练习题："><a href="#七、练习题：" class="headerlink" title="七、练习题："></a>七、练习题：</h3><ol>
+<li>截取IP地址</li>
+</ol>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">┌─◆&lt;liuyajuan@liuyajuandeMacBook-Pro&gt; </div><div class="line">└─&gt;[娟姐 😜 👉  ]🤑  好好挣钱 🤑️ &gt;&gt; ifconfig en4</div><div class="line">en4: flags=<span class="number">8863</span>&lt;UP,BROADCAST,SMART,RUNNING,SIMPLEX,MULTICAST&gt; mtu <span class="number">1500</span></div><div class="line">	options=<span class="number">4</span>&lt;VLAN_MTU&gt;</div><div class="line">	ether <span class="number">00</span>:e0:<span class="number">4</span>c:<span class="number">36</span>:<span class="number">0</span>b:<span class="number">9</span>c</div><div class="line">	inet6 fe80::<span class="number">140</span>f:<span class="number">6090</span>:e77a:<span class="number">14</span>ca%en4 prefixlen <span class="number">64</span> secured scopeid <span class="number">0x4</span></div><div class="line">	inet <span class="number">172.19</span><span class="number">.32</span><span class="number">.5</span> netmask <span class="number">0xffffff00</span> broadcast <span class="number">172.19</span><span class="number">.32</span><span class="number">.255</span></div><div class="line">	nd6 options=<span class="number">201</span>&lt;PERFORMNUD,DAD&gt;</div><div class="line">	media: autoselect (<span class="number">100</span>baseTX &lt;full-duplex&gt;)</div><div class="line">	status: active</div><div class="line">┌─◆&lt;liuyajuan@liuyajuandeMacBook-Pro&gt; </div><div class="line">└─&gt;[娟姐 😜 👉  ]🤑  好好挣钱 🤑️ &gt;&gt; ifconfig en4 | awk -F <span class="string">' '</span> <span class="string">'/inet / &#123;print $2&#125;'</span></div><div class="line"><span class="number">172.19</span><span class="number">.32</span><span class="number">.5</span></div></pre></td></tr></table></figure>
+<p>2.统计网络连接数</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">┌─◆&lt;liuyajuan@liuyajuandeMacBook-Pro&gt; </div><div class="line">└─&gt;[娟姐 😜 👉  ]🤑  好好挣钱 🤑️ &gt;&gt; netstat -an | awk <span class="string">'/^tcp/ &#123;++state[$NF]&#125; END &#123;for(key in state) print key,"\t",state[key]&#125;'</span> | column -t</div><div class="line">LISTEN       <span class="number">14</span></div><div class="line">SYN_SENT     <span class="number">2</span></div><div class="line">CLOSED       <span class="number">1</span></div><div class="line">TIME_WAIT    <span class="number">5</span></div><div class="line">ESTABLISHED  <span class="number">12</span></div></pre></td></tr></table></figure>
 
       
     </div>

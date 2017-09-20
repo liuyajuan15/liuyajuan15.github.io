@@ -25,7 +25,7 @@
 <meta property="og:site_name" content="lyjの博客">
 <meta property="og:description" content="认识了解正则表达式也有几年了，每次要用时就百度下如何使用，对于转义到底该用几个’\’总是弄不清楚，因此想抽出一大块时间来做这件事，彻彻底底的来了解正则，以下内容参考《精通正则表达式》和Zjmainstay学习笔记 相关教程  一、元字符：一、匹配位置的元字符 ，匹配的是一个位置，而非文本 脱字符 ^ : 表示匹配行首的文本 美元符号$ : 表示匹配行尾的文本 单词分界符 : \b匹配单词的开始或">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-20T09:00:17.000Z">
+<meta property="og:updated_time" content="2017-09-20T10:25:15.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="正则表达式基本介绍">
 <meta name="twitter:description" content="认识了解正则表达式也有几年了，每次要用时就百度下如何使用，对于转义到底该用几个’\’总是弄不清楚，因此想抽出一大块时间来做这件事，彻彻底底的来了解正则，以下内容参考《精通正则表达式》和Zjmainstay学习笔记 相关教程  一、元字符：一、匹配位置的元字符 ，匹配的是一个位置，而非文本 脱字符 ^ : 表示匹配行首的文本 美元符号$ : 表示匹配行尾的文本 单词分界符 : \b匹配单词的开始或">
@@ -111,7 +111,7 @@
         
         
         
-        <li class="menu-item menu-item-links active">
+        <li class="menu-item menu-item-links">
           <a href="/links">
             
             <i class="fa fa-fw fa-gg"></i>
@@ -324,14 +324,14 @@
 <li>(?i)用来启用不区分大小写的匹配，(?-i)停用，此时，他们的作用范围持续到对应的括号结束</li>
 </ul>
 </blockquote>
-<h3 id="三、分组捕获"><a href="#三、分组捕获" class="headerlink" title="三、分组捕获"></a>三、分组捕获</h3><blockquote>
+<h3 id="三、分组捕获"><a href="#三、分组捕获" class="headerlink" title="三、分组捕获"></a><a name="fenzu">三、分组捕获</a></h3><blockquote>
 <p>()在正则中有两种用途：分组和捕获</p>
 </blockquote>
 <ol>
 <li>普通捕获 <strong>(pattern)</strong> 匹配pattern并捕获结果，自动设置组号</li>
-<li>命名捕获 <strong>(?<name>pattern) 或者 (?’name’pattern)</name></strong>  匹配pattern并捕获结果，设置name为组名，普通捕获的0，1，2，数字还会捕获到</li>
-<li>普通捕获组的反向引用<strong> \1,\2 </strong>,(\w)(\d)\2\1,匹配a11a</li>
-<li>命名捕获组的反向引用 <strong> \k<name> 或者 \k’name’ </name></strong> (?<group>\d)abc\k<group> 匹配1abc1</group></group></li>
+<li>命名捕获 <strong>(?\<name\>pattern) 或者 (?’name’pattern)</name\></strong>  匹配pattern并捕获结果，设置name为组名，普通捕获的0，1，2，数字还会捕获到</li>
+<li>普通捕获组的反向引用 <strong>\1,\2</strong> ,(\w)(\d)\2\1,匹配a11a</li>
+<li>命名捕获组的反向引用  <strong>\k\<name\> 或者 \k’name’</name\></strong>  (?\<group\>\d)abc\k\<group\> 匹配1abc1</group\></group\></li>
 <li>非捕获型括号<strong>(?:exp)</strong>,仅用于分组，不能用来提取文本，只能用来规定多选结构或者量词的作用对象 (1|one)(?:and|or)(2|two) 匹配之后，$1包含1或者one ,$2包含2或者two</li>
 <li>固化分组</li>
 </ol>
