@@ -17,19 +17,19 @@
   
   
   <title>正则表达式的匹配原理 | lyjの博客</title>
-  <meta name="description" content="之所以会了解匹配原理，是因为之前也听过正则的引擎分为很多种，也听过NFA,DFA,但是究其根本还是模棱两可，因此仔细阅读《精通正则表达式》的第四章，对其关键点进行整理。  一、正则引擎的分类部分程序及其所使用的引擎 二、匹配的基础三、DFA,NFADFA:文本主导，速度快，最长的左子正则式优先匹配成功NFA:表达式主导，支持忽略优先量词，捕获型括号，回溯，最左子正则式优先匹配成功 四、回溯五、总">
+  <meta name="description" content="之所以会了解匹配原理，是因为之前也听过正则的引擎分为很多种，也听过NFA,DFA,但是究其根本还是模棱两可，因此仔细阅读《精通正则表达式》的第四章，对其关键点进行整理。   一、正则引擎的分类 二、匹配的基础 三、DFA,NFA 四、回溯 五、总结  一、正则引擎的分类部分程序及其所使用的引擎 二、匹配的基础三、DFA,NFADFA:文本主导，速度快，最长的左子正则式优先匹配成功NFA:表达式主">
 <meta name="keywords" content="正则表达式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="正则表达式的匹配原理">
 <meta property="og:url" content="http://www/lyj1215.com/2017/09/17/regex3/index.html">
 <meta property="og:site_name" content="lyjの博客">
-<meta property="og:description" content="之所以会了解匹配原理，是因为之前也听过正则的引擎分为很多种，也听过NFA,DFA,但是究其根本还是模棱两可，因此仔细阅读《精通正则表达式》的第四章，对其关键点进行整理。  一、正则引擎的分类部分程序及其所使用的引擎 二、匹配的基础三、DFA,NFADFA:文本主导，速度快，最长的左子正则式优先匹配成功NFA:表达式主导，支持忽略优先量词，捕获型括号，回溯，最左子正则式优先匹配成功 四、回溯五、总">
+<meta property="og:description" content="之所以会了解匹配原理，是因为之前也听过正则的引擎分为很多种，也听过NFA,DFA,但是究其根本还是模棱两可，因此仔细阅读《精通正则表达式》的第四章，对其关键点进行整理。   一、正则引擎的分类 二、匹配的基础 三、DFA,NFA 四、回溯 五、总结  一、正则引擎的分类部分程序及其所使用的引擎 二、匹配的基础三、DFA,NFADFA:文本主导，速度快，最长的左子正则式优先匹配成功NFA:表达式主">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://www/img/regex.png">
-<meta property="og:updated_time" content="2017-09-19T09:54:42.000Z">
+<meta property="og:updated_time" content="2017-09-20T09:57:00.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="正则表达式的匹配原理">
-<meta name="twitter:description" content="之所以会了解匹配原理，是因为之前也听过正则的引擎分为很多种，也听过NFA,DFA,但是究其根本还是模棱两可，因此仔细阅读《精通正则表达式》的第四章，对其关键点进行整理。  一、正则引擎的分类部分程序及其所使用的引擎 二、匹配的基础三、DFA,NFADFA:文本主导，速度快，最长的左子正则式优先匹配成功NFA:表达式主导，支持忽略优先量词，捕获型括号，回溯，最左子正则式优先匹配成功 四、回溯五、总">
+<meta name="twitter:description" content="之所以会了解匹配原理，是因为之前也听过正则的引擎分为很多种，也听过NFA,DFA,但是究其根本还是模棱两可，因此仔细阅读《精通正则表达式》的第四章，对其关键点进行整理。   一、正则引擎的分类 二、匹配的基础 三、DFA,NFA 四、回溯 五、总结  一、正则引擎的分类部分程序及其所使用的引擎 二、匹配的基础三、DFA,NFADFA:文本主导，速度快，最长的左子正则式优先匹配成功NFA:表达式主">
 <meta name="twitter:image" content="http://www/img/regex.png">
   <!-- Canonical links -->
   <link rel="canonical" href="http://www/lyj1215.com/2017/09/17/regex3/index.html">
@@ -113,7 +113,7 @@
         
         
         
-        <li class="menu-item menu-item-links">
+        <li class="menu-item menu-item-links active">
           <a href="/links">
             
             <i class="fa fa-fw fa-gg"></i>
@@ -195,93 +195,6 @@
     
       
   <div class="widget">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget-body">
-      <ul class="recent-post-list list-unstyled no-thumbnail">
-        
-          <li>
-            
-            <div class="item-inner">
-              <p class="item-category">
-                <a class="category-link" href="/categories/PHP/">PHP</a>
-              </p>
-              <p class="item-title">
-                <a href="/2017/09/20/string/" class="title">PHP字符串</a>
-              </p>
-              <p class="item-date">
-                <time datetime="2017-09-20T08:28:52.000Z" itemprop="datePublished">2017-09-20</time>
-              </p>
-            </div>
-          </li>
-          
-          <li>
-            
-            <div class="item-inner">
-              <p class="item-category">
-                <a class="category-link" href="/categories/其他/">其他</a>
-              </p>
-              <p class="item-title">
-                <a href="/2017/09/20/busy/" class="title">烦人的钥匙串</a>
-              </p>
-              <p class="item-date">
-                <time datetime="2017-09-20T03:53:02.000Z" itemprop="datePublished">2017-09-20</time>
-              </p>
-            </div>
-          </li>
-          
-          <li>
-            
-            <div class="item-inner">
-              <p class="item-category">
-                <a class="category-link" href="/categories/正则表达式/">正则表达式</a>
-              </p>
-              <p class="item-title">
-                <a href="/2017/09/19/regex5/" class="title">php中的正则</a>
-              </p>
-              <p class="item-date">
-                <time datetime="2017-09-19T06:26:49.000Z" itemprop="datePublished">2017-09-19</time>
-              </p>
-            </div>
-          </li>
-          
-          <li>
-            
-            <div class="item-inner">
-              <p class="item-category">
-                <a class="category-link" href="/categories/正则表达式/">正则表达式</a>
-              </p>
-              <p class="item-title">
-                <a href="/2017/09/18/regex4/" class="title">正则表达式高级应用</a>
-              </p>
-              <p class="item-date">
-                <time datetime="2017-09-18T02:34:54.000Z" itemprop="datePublished">2017-09-18</time>
-              </p>
-            </div>
-          </li>
-          
-          <li>
-            
-            <div class="item-inner">
-              <p class="item-category">
-                <a class="category-link" href="/categories/正则表达式/">正则表达式</a>
-              </p>
-              <p class="item-title">
-                <a href="/2017/09/17/regex3/" class="title">正则表达式的匹配原理</a>
-              </p>
-              <p class="item-date">
-                <time datetime="2017-09-17T05:44:41.000Z" itemprop="datePublished">2017-09-17</time>
-              </p>
-            </div>
-          </li>
-          
-      </ul>
-    </div>
-  </div>
-  
-
-    
-      
-  <div class="widget">
     <h3 class="widget-title">标签</h3>
     <div class="widget-body">
       <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/UML/">UML</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/awk/">awk</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/git/">git</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/github/">github</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/laravel/">laravel</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/mac/">mac</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/其他/">其他</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/单例/">单例</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/安全，SQL注入/">安全，SQL注入</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/other/">杂文</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/正则表达式/">正则表达式</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/环境搭建/">环境搭建</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/算法/">算法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/design-mode/">设计模式</a><span class="tag-list-count">3</span></li></ul>
@@ -348,9 +261,16 @@
         <blockquote>
 <p>之所以会了解匹配原理，是因为之前也听过正则的引擎分为很多种，也听过NFA,DFA,但是究其根本还是模棱两可，因此仔细阅读《精通正则表达式》的第四章，对其关键点进行整理。</p>
 </blockquote>
-<h3 id="一、正则引擎的分类"><a href="#一、正则引擎的分类" class="headerlink" title="一、正则引擎的分类"></a>一、正则引擎的分类</h3><p>部分程序及其所使用的引擎<br><img src="/img/regex.png" alt="创建应用" title="正则引擎的分类"></p>
-<h3 id="二、匹配的基础"><a href="#二、匹配的基础" class="headerlink" title="二、匹配的基础"></a>二、匹配的基础</h3><h3 id="三、DFA-NFA"><a href="#三、DFA-NFA" class="headerlink" title="三、DFA,NFA"></a>三、DFA,NFA</h3><p>DFA:文本主导，速度快，最长的左子正则式优先匹配成功<br>NFA:表达式主导，支持忽略优先量词，捕获型括号，回溯，最左子正则式优先匹配成功</p>
-<h3 id="四、回溯"><a href="#四、回溯" class="headerlink" title="四、回溯"></a>四、回溯</h3><h3 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a>五、总结</h3>
+<ul>
+<li><a href="#one">一、正则引擎的分类</a></li>
+<li><a href="#two">二、匹配的基础</a></li>
+<li><a href="#three">三、DFA,NFA</a></li>
+<li><a href="#four">四、回溯</a></li>
+<li><a href="#five">五、总结</a></li>
+</ul>
+<h3 id="一、正则引擎的分类"><a href="#一、正则引擎的分类" class="headerlink" title="一、正则引擎的分类"></a><a name="one">一、正则引擎的分类</a></h3><p>部分程序及其所使用的引擎<br><img src="/img/regex.png" alt="创建应用" title="正则引擎的分类"></p>
+<h3 id="二、匹配的基础"><a href="#二、匹配的基础" class="headerlink" title="二、匹配的基础"></a><a name="two">二、匹配的基础</a></h3><h3 id="三、DFA-NFA"><a href="#三、DFA-NFA" class="headerlink" title="三、DFA,NFA"></a><a name="three">三、DFA,NFA</a></h3><p>DFA:文本主导，速度快，最长的左子正则式优先匹配成功<br>NFA:表达式主导，支持忽略优先量词，捕获型括号，回溯，最左子正则式优先匹配成功</p>
+<h3 id="四、回溯"><a href="#四、回溯" class="headerlink" title="四、回溯"></a><a name="four">四、回溯</a></h3><h3 id="五、总结"><a href="#五、总结" class="headerlink" title="五、总结"></a><a name="five">五、总结</a></h3>
       
     </div>
     <div class="article-footer">

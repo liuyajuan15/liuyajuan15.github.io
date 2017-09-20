@@ -4,16 +4,94 @@
 
     
   <url>
-    <loc>http://www/lyj1215.com/2017/09/19/regex5/</loc>
-    <lastmod>2017-09-20T08:34:25.000Z</lastmod>
+    <loc>http://www/lyj1215.com/2017/09/17/regex3/</loc>
+    <lastmod>2017-09-20T09:57:00.000Z</lastmod>
     <data>
         <display>
-        <title>php中的正则</title>
-        <pubTime>2017-09-19T06:26:49.000Z</pubTime>
+        <title>正则表达式的匹配原理</title>
+        <pubTime>2017-09-17T05:44:41.000Z</pubTime>
         
         <tag>正则表达式</tag>
          
-        <tag>PHP</tag>
+         
+           
+             
+              <breadCrumb title="正则表达式" url="http://www/lyj1215.com/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www/lyj1215.com/2017/09/08/copy/</loc>
+    <lastmod>2017-09-20T09:51:15.000Z</lastmod>
+    <data>
+        <display>
+        <title>深拷贝和浅拷贝</title>
+        <pubTime>2017-09-08T10:12:41.000Z</pubTime>
+        
+        <tag>设计模式</tag>
+         
+         
+           
+             
+              <breadCrumb title="设计模式" url="http://www/lyj1215.com/categories/design-mode/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www/lyj1215.com/2017/09/07/mysql/</loc>
+    <lastmod>2017-09-20T09:50:32.000Z</lastmod>
+    <data>
+        <display>
+        <title>MySQL执行顺序</title>
+        <pubTime>2017-09-07T13:52:19.000Z</pubTime>
+        
+        <tag>MySQL</tag>
+         
+         
+           
+             
+              <breadCrumb title="MySQL" url="http://www/lyj1215.com/categories/MySQL/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www/lyj1215.com/2017/09/13/regex2/</loc>
+    <lastmod>2017-09-20T09:38:49.000Z</lastmod>
+    <data>
+        <display>
+        <title>正则表达式测试题</title>
+        <pubTime>2017-09-13T02:28:41.000Z</pubTime>
+        
+        <tag>正则表达式</tag>
+         
+         
+           
+             
+              <breadCrumb title="正则表达式" url="http://www/lyj1215.com/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
+    <loc>http://www/lyj1215.com/2017/09/12/regex1/</loc>
+    <lastmod>2017-09-20T09:00:17.000Z</lastmod>
+    <data>
+        <display>
+        <title>正则表达式基本介绍</title>
+        <pubTime>2017-09-12T07:41:25.000Z</pubTime>
+        
+        <tag>正则表达式</tag>
          
          
            
@@ -27,7 +105,7 @@
     
   <url>
     <loc>http://www/lyj1215.com/2017/09/20/string/</loc>
-    <lastmod>2017-09-20T08:33:44.000Z</lastmod>
+    <lastmod>2017-09-20T08:53:14.000Z</lastmod>
     <data>
         <display>
         <title>PHP字符串</title>
@@ -46,14 +124,16 @@
 
     
   <url>
-    <loc>http://www/lyj1215.com/2017/09/12/regex1/</loc>
-    <lastmod>2017-09-20T07:05:42.000Z</lastmod>
+    <loc>http://www/lyj1215.com/2017/09/19/regex5/</loc>
+    <lastmod>2017-09-20T08:34:25.000Z</lastmod>
     <data>
         <display>
-        <title>正则表达式基本介绍</title>
-        <pubTime>2017-09-12T07:41:25.000Z</pubTime>
+        <title>php中的正则</title>
+        <pubTime>2017-09-19T06:26:49.000Z</pubTime>
         
         <tag>正则表达式</tag>
+         
+        <tag>PHP</tag>
          
          
            
@@ -111,46 +191,6 @@
     
     
   <url>
-    <loc>http://www/lyj1215.com/2017/09/17/regex3/</loc>
-    <lastmod>2017-09-19T09:54:42.000Z</lastmod>
-    <data>
-        <display>
-        <title>正则表达式的匹配原理</title>
-        <pubTime>2017-09-17T05:44:41.000Z</pubTime>
-        
-        <tag>正则表达式</tag>
-         
-         
-           
-             
-              <breadCrumb title="正则表达式" url="http://www/lyj1215.com/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www/lyj1215.com/2017/09/13/regex2/</loc>
-    <lastmod>2017-09-19T06:02:12.000Z</lastmod>
-    <data>
-        <display>
-        <title>正则表达式测试题</title>
-        <pubTime>2017-09-13T02:28:41.000Z</pubTime>
-        
-        <tag>正则表达式</tag>
-         
-         
-           
-             
-              <breadCrumb title="正则表达式" url="http://www/lyj1215.com/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
     <loc>http://www/lyj1215.com/2017/09/18/regex4/</loc>
     <lastmod>2017-09-18T03:36:06.000Z</lastmod>
     <data>
@@ -190,26 +230,6 @@
     </url>
 
     
-  <url>
-    <loc>http://www/lyj1215.com/2017/09/08/copy/</loc>
-    <lastmod>2017-09-08T10:37:37.000Z</lastmod>
-    <data>
-        <display>
-        <title>深拷贝和浅拷贝</title>
-        <pubTime>2017-09-08T10:12:41.000Z</pubTime>
-        
-        <tag>设计模式</tag>
-         
-         
-           
-             
-              <breadCrumb title="设计模式" url="http://www/lyj1215.com/categories/design-mode/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
     
     
   <url>
@@ -228,26 +248,6 @@
            
              
               <breadCrumb title="设计模式" url="http://www/lyj1215.com/categories/design-mode/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www/lyj1215.com/2017/09/07/mysql/</loc>
-    <lastmod>2017-09-07T13:58:28.000Z</lastmod>
-    <data>
-        <display>
-        <title>MySQL执行顺序</title>
-        <pubTime>2017-09-07T13:52:19.000Z</pubTime>
-        
-        <tag>MySQL</tag>
-         
-         
-           
-             
-              <breadCrumb title="MySQL" url="http://www/lyj1215.com/categories/MySQL/"/>
           
         </display>
     </data>
