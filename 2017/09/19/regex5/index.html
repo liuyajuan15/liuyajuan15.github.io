@@ -17,18 +17,18 @@
   
   
   <title>php中的正则 | lyjの博客</title>
-  <meta name="description" content="一、PHP的特性和流派详细内容见：http://lyj1215.com/2017/09/12/regex1/ 字符缩略表示法  \a警报,\b退格（在字符组内部支持，外部是单词分界符）,\eEscape字符,\f进制符,\n,\r,\t,  字符组及相关结构 锚点及其他零长度断言  行/字符串起始位置 ^ \A   正常情况：^匹配字符串起始位置;增强型行锚点模式：^还可以匹配任何换行符之后的位置">
+  <meta name="description" content="一、PHP的特性和流派详细内容见：http://lyj1215.com/2017/09/12/regex1/ 字符缩略表示法  \a警报,\b退格（在字符组内部支持，外部是单词分界符）,\eEscape字符,\f进制符,\n,\r,\t,  字符组及相关结构  字符组[…][^…] 几乎任何字符 点号 字符组缩略表示法 \w,\d,\s,\W,\D,\S Unicode混合序列\X ,只能与模式修">
 <meta name="keywords" content="正则表达式,PHP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="php中的正则">
 <meta property="og:url" content="http://www/lyj1215.com/2017/09/19/regex5/index.html">
 <meta property="og:site_name" content="lyjの博客">
-<meta property="og:description" content="一、PHP的特性和流派详细内容见：http://lyj1215.com/2017/09/12/regex1/ 字符缩略表示法  \a警报,\b退格（在字符组内部支持，外部是单词分界符）,\eEscape字符,\f进制符,\n,\r,\t,  字符组及相关结构 锚点及其他零长度断言  行/字符串起始位置 ^ \A   正常情况：^匹配字符串起始位置;增强型行锚点模式：^还可以匹配任何换行符之后的位置">
+<meta property="og:description" content="一、PHP的特性和流派详细内容见：http://lyj1215.com/2017/09/12/regex1/ 字符缩略表示法  \a警报,\b退格（在字符组内部支持，外部是单词分界符）,\eEscape字符,\f进制符,\n,\r,\t,  字符组及相关结构  字符组[…][^…] 几乎任何字符 点号 字符组缩略表示法 \w,\d,\s,\W,\D,\S Unicode混合序列\X ,只能与模式修">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-20T10:29:03.000Z">
+<meta property="og:updated_time" content="2017-09-21T09:29:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="php中的正则">
-<meta name="twitter:description" content="一、PHP的特性和流派详细内容见：http://lyj1215.com/2017/09/12/regex1/ 字符缩略表示法  \a警报,\b退格（在字符组内部支持，外部是单词分界符）,\eEscape字符,\f进制符,\n,\r,\t,  字符组及相关结构 锚点及其他零长度断言  行/字符串起始位置 ^ \A   正常情况：^匹配字符串起始位置;增强型行锚点模式：^还可以匹配任何换行符之后的位置">
+<meta name="twitter:description" content="一、PHP的特性和流派详细内容见：http://lyj1215.com/2017/09/12/regex1/ 字符缩略表示法  \a警报,\b退格（在字符组内部支持，外部是单词分界符）,\eEscape字符,\f进制符,\n,\r,\t,  字符组及相关结构  字符组[…][^…] 几乎任何字符 点号 字符组缩略表示法 \w,\d,\s,\W,\D,\S Unicode混合序列\X ,只能与模式修">
   <!-- Canonical links -->
   <link rel="canonical" href="http://www/lyj1215.com/2017/09/19/regex5/index.html">
   
@@ -262,6 +262,13 @@
 <li>\a警报,\b退格（在字符组内部支持，外部是单词分界符）,\eEscape字符,\f进制符,\n,\r,\t,</li>
 </ul>
 <p><strong>字符组及相关结构</strong></p>
+<ul>
+<li>字符组[…][^…]</li>
+<li>几乎任何字符 点号</li>
+<li>字符组缩略表示法 \w,\d,\s,\W,\D,\S</li>
+<li>Unicode混合序列\X ,只能与模式修饰符u连用</li>
+<li>Unicode属性和区块\p{Prop},\P{Prop} ，可用于字符组内部，只能与模式修饰符u连用</li>
+</ul>
 <p><strong>锚点及其他零长度断言</strong></p>
 <ul>
 <li><strong>行/字符串起始位置</strong> ^ \A   正常情况：^匹配字符串起始位置;增强型行锚点模式：^还可以匹配任何换行符之后的位置，\A总是和^一样</li>
@@ -281,6 +288,15 @@
 <li><strong>捕获型括号</strong>(…)  反向引用 \1 \2</li>
 <li><strong>命名捕获</strong> (?\<name\>) 或者(?’name’)     反向引用 \k\<name\>或者 \k ‘name’</name\></name\></li>
 <li><strong>非捕获型</strong> (?:exp)</li>
+<li><strong>让多个子组可以共用一个后向引用数字</strong> (?|)</li>
+<li><strong>固化分组</strong></li>
+<li><strong>匹配优先量词</strong>  *,+,?,{n},{n,},{x,y}</li>
+<li><strong>忽略优先量词</strong> *?,+?,??,{n}?,{n,}?,{x,y}?</li>
+<li><strong>占有优先量词</strong> *+,++,?+,{n}+,{n,}+,{x,y}+</li>
+<li><strong>文字（非元字符）范围</strong> \Q…\E</li>
+<li><strong>多选结构</strong> |</li>
+<li><strong>递归</strong></li>
+<li><strong>条件判断</strong></li>
 </ul>
 <h3 id="二、preg函数"><a href="#二、preg函数" class="headerlink" title="二、preg函数"></a>二、preg函数</h3><ul>
 <li><strong>preg_match</strong> 测试正则表达式能否在字符串中找到匹配，并提取数据</li>
