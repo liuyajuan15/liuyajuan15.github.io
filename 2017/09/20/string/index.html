@@ -25,7 +25,7 @@
 <meta property="og:site_name" content="lyjの博客">
 <meta property="og:description" content="一个字符串 string 就是由一系列的字符组成，其中每个字符等同于一个字节。这意味着 PHP 只能支持 256 的字符集，因此不支持 Unicode   一个字符串可以用以下四种方式表达：  单引号 双引号 Heredoc 语法结构 Nowdoc 语法结构（自 PHP 5.3.0 起）  单引号 定义一个字符串的最简单的方法是用单引号把它包围起来(‘),当表达一个单引号自身，需要用反斜线()来">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-21T03:42:19.000Z">
+<meta property="og:updated_time" content="2017-09-21T06:50:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PHP字符串">
 <meta name="twitter:description" content="一个字符串 string 就是由一系列的字符组成，其中每个字符等同于一个字节。这意味着 PHP 只能支持 256 的字符集，因此不支持 Unicode   一个字符串可以用以下四种方式表达：  单引号 双引号 Heredoc 语法结构 Nowdoc 语法结构（自 PHP 5.3.0 起）  单引号 定义一个字符串的最简单的方法是用单引号把它包围起来(‘),当表达一个单引号自身，需要用反斜线()来">
@@ -295,7 +295,60 @@
 <li>NULL总是被转变成空字符串</li>
 <li>大部分的 PHP 值可以转变成 string 来永久保存，这被称作串行化，可以用函数 serialize() ，json_encode ()， var_export($items, true);都可以实现</li>
 </ul>
-<h3 id="字符串函数"><a href="#字符串函数" class="headerlink" title="字符串函数"></a>字符串函数</h3><p><strong>输入输出函数</strong></p>
+<h3 id="字符串编码"><a href="#字符串编码" class="headerlink" title="字符串编码"></a>字符串编码</h3><p><strong>ASCII编码</strong></p>
+<blockquote>
+<p>我们知道，一个二进制位(Bit)有0、1两种状态，一个字节(Byte)有8个二进制位，有256种状态，每种状态对应一个符号，就是256个符号，从0000000到11111111。计算机诞生于美国，早期的计算机使用者大多使用英文，上世纪60年代，美国制定了一套英文字符与二进制位的对应关系，称为<strong>ASCII码</strong>，沿用至今</p>
+</blockquote>
+<p><strong>GB2312和GBK编码</strong></p>
+<blockquote>
+<p>等中国人们得到计算机时，已经没有可以利用的字节状态来表示汉字，况且有6000多个常用汉字需要保存呢。但是这难不倒智慧的中国人民，我们不客气 地把那些127号之后的奇异符号们直接取消掉, 规定：一个小于127的字符的意义与原来相同，但两个大于127的字符连在一起时，就表示一个汉字，前面的一个字节（他称之为高字节）从0xA1用到 0xF7，后面一个字节（低字节）从0xA1到0xFE，这样我们就可以组合出大约7000多个简体汉字了。在这些编码里，我们还把数学符号、罗马希腊的 字母、日文的假名们都编进去了，连在 ASCII 里本来就有的数字、标点、字母都统统重新编了两个字节长的编码，这就是常说的”全角”字符，而原来在127号以下的那些就叫”半角”字符了。 中国人民看到这样很不错，于是就把这种汉字方案叫做 <strong>“GB2312“</strong>。GB2312 是对 ASCII 的中文扩展。</p>
+<p>但是中国的汉字太多了，我们很快就就发现有许多人的人名没有办法在这里打出来，特别是某些很会麻烦别人的国家领导人。于是我们不得不继续把 GB2312 没有用到的码位找出来老实不客气地用上。 后来还是不够用，于是干脆不再要求低字节一定是127号之后的内码，只要第一个字节是大于127就固定表示这是一个汉字的开始，不管后面跟的是不是扩展字 符集里的内容。结果扩展之后的编码方案被称为 <strong>GBK</strong> 标准，GBK包括了GB2312 的所有内容，同时又增加了近20000个新的汉字（包括繁体字）和符号</p>
+</blockquote>
+<p><strong>Unicode（万国码，国际码，统一码）</strong></p>
+<blockquote>
+<p>随着计算机的流行，使用计算机的人越来越多，不仅限于美国，整个世界都在使用,因为当时各个国家都像中国这样搞出一套自己的编码标准，结果互相之间谁也不懂谁的编码，谁也不支持别人的编码。正在这时，大天使加百列及时出现了——一个叫 ISO （国际标谁化组织）的国际组织决定着手解决这个问题。他们采用的方法很简单：废了所有的地区性编码方案，重新搞一个包括了地球上所有文化、所有字母和符号 的编码！他们打算叫它”Universal Multiple-Octet Coded Character Set”，简称 UCS, 俗称 “unicode“。这就是<br><strong>Unicode编码（Unique Code），也称统一码、万国码</strong>。</p>
+</blockquote>
+<p><strong>UTF-8 和 Unicode的关系</strong></p>
+<blockquote>
+<ul>
+<li>Unicode是一种字符编码方法</li>
+<li>实际传输过程中, 不同系统平台的设计不一定一致</li>
+<li>不同的编码空间利用率不同</li>
+<li>UTF-8是为了传输而设计</li>
+<li>UTF-8是一种针对Unicode的可变长度字符编码</li>
+<li>UTF-8是以8位为基本编码单位</li>
+<li>注意的是unicode一个中文字符占2个字节，而UTF-8一个中 文字符占3个字节</li>
+</ul>
+</blockquote>
+<p><strong>GB2312和GBK编码</strong></p>
+<blockquote>
+<ul>
+<li>GB2312由中国国家标准总局发布</li>
+<li>古汉语的罕用字和繁体字，GB2312不能处理</li>
+<li>收录的汉字已经覆盖中国大陆99.75%的使用频率。 </li>
+<li>注意GB2312/GBK是定长编码（ascii字符占1个字节）</li>
+<li>GBK不是标准，它对罕见字，繁体字都支持</li>
+</ul>
+</blockquote>
+<p><strong>UTF8，GBK之间的转换与选择</strong></p>
+<blockquote>
+<ul>
+<li>GBK、GB2312等与UTF8之间都必须通过Unicode编码才能相互转换</li>
+<li>优先选择UTF-8，对程序员有利</li>
+<li>为了节省存储空间，选择GBK</li>
+<li>考虑兼容其它系统，选择GBK</li>
+<li>要给外国人看(韩国人)，就选 UTF-8</li>
+<li>需要支持多语言，得选择UTF-8</li>
+</ul>
+</blockquote>
+<h3 id="字符串函数"><a href="#字符串函数" class="headerlink" title="字符串函数"></a>字符串函数</h3><p><strong>多字节转码函数 mbstring 和 iconv</strong></p>
+<ul>
+<li>优先选择mbstring </li>
+<li>为了追求速度，可以用iconv</li>
+<li>mbstring功能更强大，考虑的编码类型更多</li>
+<li>mbstring有55个函数，iconv只有11个</li>
+</ul>
+<p><strong>输入输出函数</strong></p>
 <ul>
 <li>echo —输出一个或多个字符串</li>
 <li>print —输出字符串</li>
