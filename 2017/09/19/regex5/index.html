@@ -25,7 +25,7 @@
 <meta property="og:site_name" content="lyjの博客">
 <meta property="og:description" content="一、PHP的特性和流派详细内容见：http://lyj1215.com/2017/09/12/regex1/ 字符缩略表示法  \a警报,\b退格（在字符组内部支持，外部是单词分界符）,\eEscape字符,\f进制符,\n,\r,\t,  字符组及相关结构  字符组[…][^…] 几乎任何字符 点号 字符组缩略表示法 \w,\d,\s,\W,\D,\S Unicode混合序列\X ,只能与模式修">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-21T09:29:25.000Z">
+<meta property="og:updated_time" content="2017-09-22T08:21:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="php中的正则">
 <meta name="twitter:description" content="一、PHP的特性和流派详细内容见：http://lyj1215.com/2017/09/12/regex1/ 字符缩略表示法  \a警报,\b退格（在字符组内部支持，外部是单词分界符）,\eEscape字符,\f进制符,\n,\r,\t,  字符组及相关结构  字符组[…][^…] 几乎任何字符 点号 字符组缩略表示法 \w,\d,\s,\W,\D,\S Unicode混合序列\X ,只能与模式修">
@@ -54,7 +54,7 @@
       
       
       <div class="profile-block text-center">
-        <a id="avatar" href="" target="_blank">
+        <a id="avatar" href="https://github.com/liuyajuan15" target="_blank">
           <img class="thumb-xl img-circle img-rotate" src="/img/php.jpg" width="200" height="200">
         </a>
         <h2 id="name" class="hidden-xs hidden-sm">lyj</h2>
@@ -146,9 +146,9 @@
 	
     <ul class="social-links">
     	
-        <li><a href="/" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="fa fa-github"></i></a></li>
+        <li><a href="https://github.com/liuyajuan15" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="fa fa-github"></i></a></li>
         
-        <li><a href="/" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="fa fa-weibo"></i></a></li>
+        <li><a href="https://weibo.com/p/1005055677293838/home?from=page_100505&mod=TAB#place" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="fa fa-weibo"></i></a></li>
         
         <li><a href="/" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="fa fa-twitter"></i></a></li>
         
@@ -319,9 +319,28 @@
 <h3 id="三、PHP单引号字符串"><a href="#三、PHP单引号字符串" class="headerlink" title="三、PHP单引号字符串"></a>三、PHP单引号字符串</h3><p>详细内容见：<a href="http://lyj1215.com/2017/09/20/string/" target="_blank" rel="external">http://lyj1215.com/2017/09/20/string/</a></p>
 <blockquote>
 <p>因为正则表达式很有可能包含反斜线，如果使用单引号字符串文本，正则表达式就可以省略许多额外的转义。PHP的单引号字符串只有两个元序列。’\’’,’\‘<br>在正则表达式中使用\匹配一个\,在单引号字符串中，\都应表示为\,所以\就成了\\,四个反斜线才能匹配一个反斜线。</p>
+<p>反斜线在单引号字符串和双引号字符串 中都有特殊含义，因此要匹配一个反斜线， 模式中必须写为 ”\\”。 译注： “/\/”， 首先它作为字符串，反斜线会进行转义， 那么转义后的结果是/\/，这个才是正则表达式引擎拿到的模式， 而正则表达式引擎也认为 \ 是转义标记，它会将分隔符 / 进行转义， 从而得到的是一个错误，因此，需要 4 个反斜线才可以匹配一个反斜线。</p>
 </blockquote>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//以下例子 需要匹配abc\,写正则应该为abc\\,在代码中用单引号引起来应该是四个\</span></div><div class="line">$re = <span class="string">'/abc\\\\/'</span>;</div><div class="line">$str = <span class="string">'abc\\'</span>;</div><div class="line">preg_match_all($re, $str, $matches);</div><div class="line">print_r($matches);</div><div class="line"></div><div class="line">print_r(<span class="string">'/^.*\/'</span>); <span class="comment">//   /^.*\/</span></div><div class="line">print_r(<span class="string">'/^.*\\/'</span>);<span class="comment">//   /^.*\/</span></div><div class="line">print_r(<span class="string">'/^.*\\\/'</span>);<span class="comment">//   /^.*\\/</span></div><div class="line">print_r(<span class="string">'/^.*\\\\/'</span>);<span class="comment">//   /^.*\\/</span></div></pre></td></tr></table></figure>
-<h3 id="四、递归的正则表达式"><a href="#四、递归的正则表达式" class="headerlink" title="四、递归的正则表达式"></a>四、递归的正则表达式</h3>
+<h3 id="四、递归的正则表达式"><a href="#四、递归的正则表达式" class="headerlink" title="四、递归的正则表达式"></a>四、递归的正则表达式</h3><blockquote>
+<p>请先思考如何来匹配(1<em>(3+2))  嵌套括号的内容((()))这种  ，(([^)]</em>))这个正则只能匹配 到(1<em>(3+2)，在以前, 这种情况, 正则无法处理, 最多只能处理固定层数的递归, 而无法处理无线递归的情况… 而在perl 5.6以后, 引入了一个新的特性: Recursive patterns, 使得这种需求可以被正确的处理.<em>*(?R) ,这个表示正则模式本身(?R)的作用就是递归地替换它所在的整条正则表达式</em></em></p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">#1(?R)*#</span></div><div class="line"><span class="comment">//我们来仔细看一下, 这个正则, 首先它匹配数字"1", 然后(?R)*表示, 正则式本身, 也就是说, 可以认为是:</span></div><div class="line"><span class="comment">#1(正则本身(正则本身).....)*#   或者#1(1(1(1)))# ,匹配一堆1</span></div><div class="line"><span class="comment">//于是, 对于文章开头说到的情况:"括号配对", 可以写下如下的正则式:</span></div><div class="line"><span class="comment">#\((?R)*\)#</span></div></pre></td></tr></table></figure>
+<blockquote>
+<p>现在再来思考一下如何匹配(a(b(c)d)e) ,先剧透下正则应该是：’/(([^()]+|(?R))*)/‘</p>
+<p>现在我们来思考一下为什么是这样写：<br>我们已经知道了(?R)的作用就是递归的替换他所在的整条正则表达式，在每次迭代的时候，PHP语法分析器都会将(?R)替换为”(([^()]+|(?R))*)“ ,因此上面的正则表达式等价于：</p>
+<p>“(([^()]+|(([^()]+|(([^()]+)<em>))</em>))*))/“</p>
+<p>现在我们来分析下”(([^()]+|(?R))*)“是如何匹配 “(a(b(c)d)e)”的：</p>
+<p>“(c)”这部分被正则式 “(([^()]+)*)“ 匹配. 请注意, (c) 其实就相当于整个递归的一个缩影, 麻雀虽小五脏俱全, 因此它用到了整个正则表达式. 换言之, 下一步中的(c), 可以使用(?R) 来匹配. </p>
+<p>(b(c)d)的匹配过程为: </p>
+<p>“(“匹配”(“; </p>
+<p>“[^()]+”匹配”b”; </p>
+<p>(?R)匹配”(c)”; </p>
+<p>“[^()]+”匹配”d”; </p>
+<p>“)“匹配”)”. </p>
+<p>所有捕获子组最终被设置的捕获值都是从递归最外层子模式捕获的值。 如果上面的模式匹配 (a(b(c)d)e)，捕获子组最终被设置的值为 ”e”， 即顶级得到的最后一个值。 如果增加了额外的括号，((((?&gt;[^()]+)|(?R))*))，捕获到的字符串就是顶层括号的匹配内容 ”a(b(c)d)e”</p>
+</blockquote>
+
       
     </div>
     <div class="article-footer">
@@ -344,12 +363,12 @@
   <div class="panel-body">
     <figure class="media">
       <div class="media-left">
-        <a href="" target="_blank" class="img-burn thumb-sm visible-lg">
+        <a href="https://github.com/liuyajuan15" target="_blank" class="img-burn thumb-sm visible-lg">
           <img src="/img/php.jpg" class="img-rounded w-full" alt="">
         </a>
       </div>
       <div class="media-body">
-        <h3 class="media-heading"><a href="" target="_blank"><span class="text-dark">lyj</span><small class="ml-1x">刘亚娟</small></a></h3>
+        <h3 class="media-heading"><a href="https://github.com/liuyajuan15" target="_blank"><span class="text-dark">lyj</span><small class="ml-1x">刘亚娟</small></a></h3>
         <div>坚持就是胜利。</div>
       </div>
     </figure>
@@ -445,9 +464,9 @@
 	
     <ul class="social-links">
     	
-        <li><a href="/" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="fa fa-github"></i></a></li>
+        <li><a href="https://github.com/liuyajuan15" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="fa fa-github"></i></a></li>
         
-        <li><a href="/" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="fa fa-weibo"></i></a></li>
+        <li><a href="https://weibo.com/p/1005055677293838/home?from=page_100505&mod=TAB#place" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="fa fa-weibo"></i></a></li>
         
         <li><a href="/" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="fa fa-twitter"></i></a></li>
         

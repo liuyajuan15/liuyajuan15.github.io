@@ -4,6 +4,28 @@
 
     
   <url>
+    <loc>http://www/lyj1215.com/2017/09/19/regex5/</loc>
+    <lastmod>2017-09-22T08:21:34.000Z</lastmod>
+    <data>
+        <display>
+        <title>php中的正则</title>
+        <pubTime>2017-09-19T06:26:49.000Z</pubTime>
+        
+        <tag>正则表达式</tag>
+         
+        <tag>PHP</tag>
+         
+         
+           
+             
+              <breadCrumb title="正则表达式" url="http://www/lyj1215.com/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
+          
+        </display>
+    </data>
+    </url>
+
+    
+  <url>
     <loc>http://www/lyj1215.com/2017/02/22/math/</loc>
     <lastmod>2017-09-22T05:57:16.000Z</lastmod>
     <data>
@@ -32,28 +54,6 @@
         <pubTime>2017-09-12T07:41:25.000Z</pubTime>
         
         <tag>正则表达式</tag>
-         
-         
-           
-             
-              <breadCrumb title="正则表达式" url="http://www/lyj1215.com/categories/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
-          
-        </display>
-    </data>
-    </url>
-
-    
-  <url>
-    <loc>http://www/lyj1215.com/2017/09/19/regex5/</loc>
-    <lastmod>2017-09-21T09:29:25.000Z</lastmod>
-    <data>
-        <display>
-        <title>php中的正则</title>
-        <pubTime>2017-09-19T06:26:49.000Z</pubTime>
-        
-        <tag>正则表达式</tag>
-         
-        <tag>PHP</tag>
          
          
            
