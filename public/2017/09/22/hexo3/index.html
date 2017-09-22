@@ -17,18 +17,18 @@
   
   
   <title>hexo个人博客多电脑编辑 | lyjの博客</title>
-  <meta name="description" content="坚持就是胜利">
+  <meta name="description" content="由于每天上下班带电脑太过麻烦，因此在家里放了一台电脑，那么问题来了，怎么才能在多台电脑上来更新博客，经过百度尝试成功了， 因此记录下来。  环境搭建 在原有的仓库https://github.com/liuyajuan15/liuyajuan15.github.io 下面在创建一个hexo 分支，并设置为默认分支，之前默认为master 在本地执行└─&amp;gt;[娟姐 😜 👉 git:(hex">
 <meta name="keywords" content="hexo,环境搭建">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hexo个人博客多电脑编辑">
 <meta property="og:url" content="http://www/lyj1215.com/2017/09/22/hexo3/index.html">
 <meta property="og:site_name" content="lyjの博客">
-<meta property="og:description" content="坚持就是胜利">
+<meta property="og:description" content="由于每天上下班带电脑太过麻烦，因此在家里放了一台电脑，那么问题来了，怎么才能在多台电脑上来更新博客，经过百度尝试成功了， 因此记录下来。  环境搭建 在原有的仓库https://github.com/liuyajuan15/liuyajuan15.github.io 下面在创建一个hexo 分支，并设置为默认分支，之前默认为master 在本地执行└─&amp;gt;[娟姐 😜 👉 git:(hex">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-22T13:57:14.000Z">
+<meta property="og:updated_time" content="2017-09-22T15:03:49.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="hexo个人博客多电脑编辑">
-<meta name="twitter:description" content="坚持就是胜利">
+<meta name="twitter:description" content="由于每天上下班带电脑太过麻烦，因此在家里放了一台电脑，那么问题来了，怎么才能在多台电脑上来更新博客，经过百度尝试成功了， 因此记录下来。  环境搭建 在原有的仓库https://github.com/liuyajuan15/liuyajuan15.github.io 下面在创建一个hexo 分支，并设置为默认分支，之前默认为master 在本地执行└─&amp;gt;[娟姐 😜 👉 git:(hex">
   <!-- Canonical links -->
   <link rel="canonical" href="http://www/lyj1215.com/2017/09/22/hexo3/index.html">
   
@@ -265,7 +265,30 @@
     </div>
     <div class="article-entry markdown-body" itemprop="articleBody">
       
-        
+        <blockquote>
+<p>由于每天上下班带电脑太过麻烦，因此在家里放了一台电脑，那么问题来了，怎么才能在多台电脑上来更新博客，经过百度尝试成功了， 因此记录下来。</p>
+</blockquote>
+<h3 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h3><ol>
+<li>在原有的仓库<a href="https://github.com/liuyajuan15/liuyajuan15.github.io" target="_blank" rel="external">https://github.com/liuyajuan15/liuyajuan15.github.io</a> 下面在创建一个hexo 分支，并设置为默认分支，之前默认为master</li>
+<li>在本地执行└─&gt;[娟姐 😜 👉 git:(hexo*) ]🤑  好好挣钱 🤑️ &gt;&gt; git clone <a href="https://github.com/liuyajuan15/liuyajuan15.github.io.git" target="_blank" rel="external">https://github.com/liuyajuan15/liuyajuan15.github.io.git</a></li>
+<li>进入liuyajuan15.github.io目录，把原来目录的文件拷贝过来，执行git add –all,git commit -m ‘change’ ,git push origin hexo</li>
+<li>查看一下_config.yml中的deploy参数分支是否是master，默认下是master</li>
+<li>执行hexo clean &amp;&amp; hexo g &amp;&amp; hexo d 把生成的文件提交到master分支上,这样hexo用来存放网站的原始文件，master分支用来存放生成的静态页面。</li>
+</ol>
+<h3 id="日常改动"><a href="#日常改动" class="headerlink" title="日常改动"></a>日常改动</h3><blockquote>
+<p>平时写博客只需要hexo clean &amp;&amp; hexo g &amp;&amp; hexo d 执行这个命令，把静态文件部署即可，现在需要多做一步操作</p>
+</blockquote>
+<ol>
+<li>git branch 查看当前分支是否为hexo，不做修改的情况下默认为hexo</li>
+<li>依次执行git add .、git commit -m “…”、git push origin hexo 将改动推送到github</li>
+<li>执行hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</li>
+</ol>
+<h3 id="新电脑使用流程"><a href="#新电脑使用流程" class="headerlink" title="新电脑使用流程"></a>新电脑使用流程</h3><ol>
+<li>在工作目录下执行git clone <a href="https://github.com/liuyajuan15/liuyajuan15.github.io.git" target="_blank" rel="external">https://github.com/liuyajuan15/liuyajuan15.github.io.git</a></li>
+<li>在本地安装node.js,npm,git等</li>
+<li>依次执行npm install hexo,   npm install,   npm install hexo-deployer-git,不需要hexo init这条指令</li>
+</ol>
+
       
     </div>
     <div class="article-footer">
