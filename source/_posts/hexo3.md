@@ -24,3 +24,4 @@ categories: 环境搭建
 1. 在工作目录下执行git clone https://github.com/liuyajuan15/liuyajuan15.github.io.git
 2. 在本地安装node.js,npm,git等
 3. 依次执行npm install hexo,   npm install,   npm install hexo-deployer-git,不需要hexo init这条指令
+4. 遇到了一些问题，解决办法请参考http://www.midaoi.com/2016/10/27/hexoError/
