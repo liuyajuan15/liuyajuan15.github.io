@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>hexo+github搭建免费网站 | lyjの博客</title>
+  <meta name="description" content="一、准备工作 一个github账号 安装node.js(node官网下载)、npm(推荐brew安装) 安装git  二、在GitHub创建仓库 新建一个名为你的用户名.github.io的仓库 仓库名字必须是：username.github.io，其中username是你的用户名  三、安装hexo Hexo是一个简单、快速、强大的基于 Github Pages 的博客发布工具，支持Markdo">
+<meta name="keywords" content="hexo,环境搭建">
+<meta property="og:type" content="article">
+<meta property="og:title" content="hexo+github搭建免费网站">
+<meta property="og:url" content="http://www/lyj1215.com/2016/12/10/hexo/index.html">
+<meta property="og:site_name" content="lyjの博客">
+<meta property="og:description" content="一、准备工作 一个github账号 安装node.js(node官网下载)、npm(推荐brew安装) 安装git  二、在GitHub创建仓库 新建一个名为你的用户名.github.io的仓库 仓库名字必须是：username.github.io，其中username是你的用户名  三、安装hexo Hexo是一个简单、快速、强大的基于 Github Pages 的博客发布工具，支持Markdo">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2016-12-10T11:20:33.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="hexo+github搭建免费网站">
+<meta name="twitter:description" content="一、准备工作 一个github账号 安装node.js(node官网下载)、npm(推荐brew安装) 安装git  二、在GitHub创建仓库 新建一个名为你的用户名.github.io的仓库 仓库名字必须是：username.github.io，其中username是你的用户名  三、安装hexo Hexo是一个简单、快速、强大的基于 Github Pages 的博客发布工具，支持Markdo">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://www/lyj1215.com/2016/12/10/hexo/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="lyjの博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <!-- font-awesome CSS -->
+  <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  
+    
+    
+
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/liuyajuan15" target="_blank">
+          <img class="thumb-xl img-circle img-rotate" src="/img/php.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">lyj</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">刘亚娟</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="fa fa-map-marker"></i> Beijing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat"><i class="fa fa-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+            <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <!-- <span class="ins-close ins-selectable"><i class="fa fa-times"></i></span> -->
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav">
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="fa fa-fw fa-dashboard"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="fa fa-fw fa-delicious"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="fa fa-fw fa-gg"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-about active">
+          <a href="/about">
+            
+            <i class="fa fa-fw fa-coffee"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/liuyajuan15" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="fa fa-github"></i></a></li>
+        
+        <li><a href="https://weibo.com/p/1005055677293838/home?from=page_100505&mod=TAB#place" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="fa fa-weibo"></i></a></li>
+        
+        <li><a href="/" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="fa fa-twitter"></i></a></li>
+        
+        <li><a href="/" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="fa fa-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="fa fa-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            
+            <p>您好，您是第<span id="busuanzi_value_site_uv">0</span>位访客</p>
+            
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安全/">安全</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">数据结构与算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂文</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/框架分析/">框架分析</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/环境搭建/">环境搭建</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-mode/">设计模式</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/MySQL/" style="font-size: 13px;">MySQL</a> <a href="/tags/PHP/" style="font-size: 13.33px;">PHP</a> <a href="/tags/UML/" style="font-size: 13px;">UML</a> <a href="/tags/awk/" style="font-size: 13px;">awk</a> <a href="/tags/git/" style="font-size: 13.33px;">git</a> <a href="/tags/github/" style="font-size: 13px;">github</a> <a href="/tags/hexo/" style="font-size: 13.67px;">hexo</a> <a href="/tags/laravel/" style="font-size: 13px;">laravel</a> <a href="/tags/mac/" style="font-size: 13px;">mac</a> <a href="/tags/其他/" style="font-size: 13.33px;">其他</a> <a href="/tags/单例/" style="font-size: 13px;">单例</a> <a href="/tags/字符串/" style="font-size: 13px;">字符串</a> <a href="/tags/安全，SQL注入/" style="font-size: 13px;">安全，SQL注入</a> <a href="/tags/other/" style="font-size: 13px;">杂文</a> <a href="/tags/正则表达式/" style="font-size: 14px;">正则表达式</a> <a href="/tags/环境搭建/" style="font-size: 13.67px;">环境搭建</a> <a href="/tags/算法/" style="font-size: 13px;">算法</a> <a href="/tags/design-mode/" style="font-size: 13.67px;">设计模式</a>
+    </div>
+  </div>
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-hexo" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      hexo+github搭建免费网站
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="fa fa-calendar-check-o"></i>
+	<a href="/2016/12/10/hexo/" class="article-date">
+	  <time datetime="2016-12-10T11:20:33.000Z" itemprop="datePublished">2016-12-10</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/环境搭建/">环境搭建</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="fa fa-tag"></i>
+	<a class="article-tag-link" href="/tags/hexo/">hexo</a>, <a class="article-tag-link" href="/tags/环境搭建/">环境搭建</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="fa fa-eye" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			阅读<span id="busuanzi_value_page_pv">0</span>次
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="fa fa-commenting-o"></i> <a href="/2016/12/10/hexo/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+      
+    </div>
+    <div class="article-entry markdown-body" itemprop="articleBody">
+      
+        <h3 id="一、准备工作"><a href="#一、准备工作" class="headerlink" title="一、准备工作"></a>一、准备工作</h3><ul>
+<li>一个github账号</li>
+<li>安装node.js(node官网下载)、npm(推荐brew安装)</li>
+<li>安装git</li>
+</ul>
+<h3 id="二、在GitHub创建仓库"><a href="#二、在GitHub创建仓库" class="headerlink" title="二、在GitHub创建仓库"></a>二、在GitHub创建仓库</h3><ul>
+<li>新建一个名为你的用户名.github.io的仓库</li>
+<li>仓库名字必须是：username.github.io，其中username是你的用户名</li>
+</ul>
+<h3 id="三、安装hexo"><a href="#三、安装hexo" class="headerlink" title="三、安装hexo"></a>三、安装hexo</h3><ul>
+<li>Hexo是一个简单、快速、强大的基于 Github Pages 的博客发布工具，支持Markdown格式，有众多优秀插件和主题。</li>
+<li>官网：<a href="http://hexo.io" target="_blank" rel="external">http://hexo.io</a></li>
+<li>github: <a href="https://github.com/hexojs/hexo" target="_blank" rel="external">https://github.com/hexojs/hexo</a></li>
+<li>安装 npm install -g hexo</li>
+<li>初始化 在电脑的某个地方新建一个名为blog的文件夹（名字可以随便取），我的是~/Sites/blog,进入目录执行 hexo init<br>至此hexo安装完毕</li>
+</ul>
+<h3 id="四、本地运行"><a href="#四、本地运行" class="headerlink" title="四、本地运行"></a>四、本地运行</h3><ul>
+<li>在项目根目录下执行 hexo s #启动服务</li>
+<li>访问：<a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a></li>
+</ul>
+<h3 id="五、配置git"><a href="#五、配置git" class="headerlink" title="五、配置git"></a>五、配置git</h3><ul>
+<li>编辑 根目录下的 _config.yml 文件<figure class="highlight less"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="attribute">deploy</span>:</div><div class="line">    <span class="attribute">type</span>: git</div><div class="line">    <span class="attribute">repo</span>: <span class="attribute">https</span>:<span class="comment">//github.com/username/username.github.io  #username就是你的用户名</span></div><div class="line">    <span class="attribute">branch</span>: master</div><div class="line">    <span class="attribute">message</span>: 提交博客内容</div></pre></td></tr></table></figure></li>
+<li>安装插件 npm install hexo-deployer-git –save</li>
+<li>提交 hexo d  如果提交失败需要清除 hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</li>
+</ul>
+<h3 id="六、下载好看的主题和有用的插件"><a href="#六、下载好看的主题和有用的插件" class="headerlink" title="六、下载好看的主题和有用的插件"></a>六、下载好看的主题和有用的插件</h3><ul>
+<li>Plugins: <a href="https://hexo.io/plugins/" target="_blank" rel="external">https://hexo.io/plugins/</a></li>
+<li>Themes: <a href="https://hexo.io/themes/" target="_blank" rel="external">https://hexo.io/themes/</a></li>
+<li>主题里面自带使用教程这里就不多说了</li>
+</ul>
+<h3 id="七、绑定域名-依据个人情况"><a href="#七、绑定域名-依据个人情况" class="headerlink" title="七、绑定域名(依据个人情况)"></a>七、绑定域名(依据个人情况)</h3><ul>
+<li>如果不绑定域名肯定也是可以的，就用默认的 xxx.github.io 来访问</li>
+<li>阿里云购买域名后 执行ping xxx.github.com得到对应的IP地址，去万网的控制台中解析购买的域名</li>
+<li>在blog/source 目录下新建一个CNAME文件(无后缀名) 将自己的域名 lyj1215.com填入其中,至此自己的博客基本已经完成</li>
+</ul>
+<h3 id="八、其他一些设置"><a href="#八、其他一些设置" class="headerlink" title="八、其他一些设置"></a>八、其他一些设置</h3><ul>
+<li>详见根目录下的 _config.yml,另外会单独写一篇文章来讲解如何设置</li>
+</ul>
+<h3 id="九、开始你的博客之旅吧"><a href="#九、开始你的博客之旅吧" class="headerlink" title="九、开始你的博客之旅吧"></a>九、开始你的博客之旅吧</h3><ul>
+<li>到根目录下执行如下命令hexo会帮我们在_posts下生成相关md文件，打开这个文件编辑就好了 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="string">执行hexo</span> <span class="string">new</span> <span class="string">'first'</span><span class="string">命令</span></div><div class="line"><span class="string">打开文件如下：</span></div><div class="line"><span class="meta">---</span></div><div class="line"><span class="attr">title:</span> <span class="string">postName</span> <span class="comment">#文章页面上的显示名称，一般是中文</span></div><div class="line"><span class="attr">date:</span> <span class="number">2017</span><span class="bullet">-07</span><span class="bullet">-07</span> <span class="number">19</span><span class="string">:39:39</span> <span class="comment">#文章生成时间，一般不改，当然也可以任意修改</span></div><div class="line"><span class="attr">categories:</span> <span class="string">默认分类</span> <span class="comment">#分类</span></div><div class="line"><span class="attr">tags:</span> <span class="string">[tag1,tag2,tag3]</span> <span class="comment">#文章标签，可空，多标签请用格式，注意:后面有个空格</span></div><div class="line"><span class="attr">description:</span> <span class="string">附加一段文章摘要，字数最好在140字以内，会出现在meta的description里面</span></div><div class="line"><span class="meta">---</span></div><div class="line"><span class="string">以下是正文</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="十、hexo一些常用命令"><a href="#十、hexo一些常用命令" class="headerlink" title="十、hexo一些常用命令"></a>十、hexo一些常用命令</h3><ul>
+<li>基本命令<ol>
+<li>hexo new “postName” #新建文章</li>
+<li>hexo new page “pageName” #新建页面</li>
+<li>hexo generate #生成静态页面至public目录</li>
+<li>hexo server #开启预览访问端口（默认端口4000，’ctrl + c’关闭server）</li>
+<li>hexo deploy #部署到GitHub</li>
+<li>hexo help  # 查看帮助</li>
+<li>hexo version  #查看Hexo的版本</li>
+</ol>
+</li>
+<li>缩写<ol>
+<li>hexo n == hexo new</li>
+<li>hexo g == hexo generate</li>
+<li>hexo s == hexo server</li>
+<li>hexo d == hexo deploy</li>
+</ol>
+</li>
+<li>命令组合<ol>
+<li>hexo s -g #生成并本地预览</li>
+<li>hexo d -g #生成并上传</li>
+</ol>
+</li>
+</ul>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://www/lyj1215.com/2016/12/10/hexo/" title="hexo+github搭建免费网站" target="_blank" rel="external">http://www/lyj1215.com/2016/12/10/hexo/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/liuyajuan15" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/img/php.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/liuyajuan15" target="_blank"><span class="text-dark">lyj</span><small class="ml-1x">刘亚娟</small></a></h3>
+        <div>坚持就是胜利。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+       
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMDc0NC83Mjk2">
+  <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+      
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2016/12/11/hexo2/" title="hexo相关配置以及遇到的问题"><i class="fa fa-angle-left" aria-hidden="true"></i>&nbsp;&nbsp;上一篇</a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2016/11/06/first/" title="第一篇博客诞生">下一篇&nbsp;&nbsp;<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning hidden-xs" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  
+  
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-tit">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="donate-payimg">
+            <img src="/img/alipay.png" alt="扫码支持" title="扫一扫" />
+          </div>
+          <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+          <div class="donate-payselect">
+            <div class="pay_item checked" data-id="alipay" data-src="/img/alipay.png">
+              <div class="radio">
+                <input type="radio" name="payment" id="input-alipay" value="alipay" checked>
+                <label class="pay_logo clickable" for="input-alipay"><img src="/images/donate/alipay.jpg" alt="支付宝" /></label>
+              </div>
+            </div>
+            <div class="pay_item" data-id="weipay" data-src="/img/wechat.png">
+              <div class="radio">
+                <input type="radio" name="payment" id="input-weipay" value="weipay">
+                <label class="pay_logo clickable" for="input-weipay"><img src="/images/donate/weipay.jpg" alt="微信支付" /></label>
+              </div>
+            </div>
+          </div>
+          <div class="text-grey">
+            <p>打开<span id="donate-pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/liuyajuan15" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="fa fa-github"></i></a></li>
+        
+        <li><a href="https://weibo.com/p/1005055677293838/home?from=page_100505&mod=TAB#place" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="fa fa-weibo"></i></a></li>
+        
+        <li><a href="/" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="fa fa-twitter"></i></a></li>
+        
+        <li><a href="/" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="fa fa-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="fa fa-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.js"></script>
+<script src="/js/application.js"></script>
+  
+    
+    
+    
+        <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+    
+    
+        
+<script defer src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+        
+    
+<script defer type="text/javascript">
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+
+    
+    
+
+
+
+</body>
+</html>

@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>深拷贝和浅拷贝 | lyjの博客</title>
+  <meta name="description" content="深拷贝：赋值时完全复制，完全的copy，对其中一个做出改变，不会影响另一个 浅拷贝：赋值时，引用赋值，相当于取了一个别名。对其中一个修改，会影响另一个。 PHP中， = 赋值时，普通对象是深拷贝，但对对象来说，是浅拷贝。也就是说，对象的赋值是引用赋值。（对象作为参数传递时，也是引用传递，无论函数定义时参数前面是否有&amp;amp;符号） php4中，对象的 = 赋值是实现一份副本，这样存在很多问题，在">
+<meta name="keywords" content="设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深拷贝和浅拷贝">
+<meta property="og:url" content="http://www/lyj1215.com/2017/09/08/copy/index.html">
+<meta property="og:site_name" content="lyjの博客">
+<meta property="og:description" content="深拷贝：赋值时完全复制，完全的copy，对其中一个做出改变，不会影响另一个 浅拷贝：赋值时，引用赋值，相当于取了一个别名。对其中一个修改，会影响另一个。 PHP中， = 赋值时，普通对象是深拷贝，但对对象来说，是浅拷贝。也就是说，对象的赋值是引用赋值。（对象作为参数传递时，也是引用传递，无论函数定义时参数前面是否有&amp;amp;符号） php4中，对象的 = 赋值是实现一份副本，这样存在很多问题，在">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-09-23T04:12:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="深拷贝和浅拷贝">
+<meta name="twitter:description" content="深拷贝：赋值时完全复制，完全的copy，对其中一个做出改变，不会影响另一个 浅拷贝：赋值时，引用赋值，相当于取了一个别名。对其中一个修改，会影响另一个。 PHP中， = 赋值时，普通对象是深拷贝，但对对象来说，是浅拷贝。也就是说，对象的赋值是引用赋值。（对象作为参数传递时，也是引用传递，无论函数定义时参数前面是否有&amp;amp;符号） php4中，对象的 = 赋值是实现一份副本，这样存在很多问题，在">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://www/lyj1215.com/2017/09/08/copy/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="lyjの博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <!-- font-awesome CSS -->
+  <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  
+    
+    
+
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/liuyajuan15" target="_blank">
+          <img class="thumb-xl img-circle img-rotate" src="/img/php.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">lyj</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">刘亚娟</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="fa fa-map-marker"></i> Beijing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat"><i class="fa fa-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+            <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <!-- <span class="ins-close ins-selectable"><i class="fa fa-times"></i></span> -->
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav">
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="fa fa-fw fa-dashboard"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="fa fa-fw fa-delicious"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="fa fa-fw fa-gg"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-about active">
+          <a href="/about">
+            
+            <i class="fa fa-fw fa-coffee"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/liuyajuan15" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="fa fa-github"></i></a></li>
+        
+        <li><a href="https://weibo.com/p/1005055677293838/home?from=page_100505&mod=TAB#place" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="fa fa-weibo"></i></a></li>
+        
+        <li><a href="/" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="fa fa-twitter"></i></a></li>
+        
+        <li><a href="/" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="fa fa-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="fa fa-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            
+            <p>您好，您是第<span id="busuanzi_value_site_uv">0</span>位访客</p>
+            
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安全/">安全</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">数据结构与算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂文</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/框架分析/">框架分析</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/环境搭建/">环境搭建</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-mode/">设计模式</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/MySQL/" style="font-size: 13px;">MySQL</a> <a href="/tags/PHP/" style="font-size: 13.33px;">PHP</a> <a href="/tags/UML/" style="font-size: 13px;">UML</a> <a href="/tags/awk/" style="font-size: 13px;">awk</a> <a href="/tags/git/" style="font-size: 13.33px;">git</a> <a href="/tags/github/" style="font-size: 13px;">github</a> <a href="/tags/hexo/" style="font-size: 13.67px;">hexo</a> <a href="/tags/laravel/" style="font-size: 13px;">laravel</a> <a href="/tags/mac/" style="font-size: 13px;">mac</a> <a href="/tags/其他/" style="font-size: 13.33px;">其他</a> <a href="/tags/单例/" style="font-size: 13px;">单例</a> <a href="/tags/字符串/" style="font-size: 13px;">字符串</a> <a href="/tags/安全，SQL注入/" style="font-size: 13px;">安全，SQL注入</a> <a href="/tags/other/" style="font-size: 13px;">杂文</a> <a href="/tags/正则表达式/" style="font-size: 14px;">正则表达式</a> <a href="/tags/环境搭建/" style="font-size: 13.67px;">环境搭建</a> <a href="/tags/算法/" style="font-size: 13px;">算法</a> <a href="/tags/design-mode/" style="font-size: 13.67px;">设计模式</a>
+    </div>
+  </div>
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-copy" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      深拷贝和浅拷贝
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="fa fa-calendar-check-o"></i>
+	<a href="/2017/09/08/copy/" class="article-date">
+	  <time datetime="2017-09-08T10:12:41.000Z" itemprop="datePublished">2017-09-08</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/design-mode/">设计模式</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="fa fa-tag"></i>
+	<a class="article-tag-link" href="/tags/design-mode/">设计模式</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="fa fa-eye" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			阅读<span id="busuanzi_value_page_pv">0</span>次
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="fa fa-commenting-o"></i> <a href="/2017/09/08/copy/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+      
+    </div>
+    <div class="article-entry markdown-body" itemprop="articleBody">
+      
+        <ul>
+<li>深拷贝：赋值时完全复制，完全的copy，对其中一个做出改变，不会影响另一个</li>
+<li>浅拷贝：赋值时，引用赋值，相当于取了一个别名。对其中一个修改，会影响另一个。</li>
+<li>PHP中， = 赋值时，普通对象是深拷贝，但对对象来说，是浅拷贝。也就是说，对象的赋值是引用赋值。（对象作为参数传递时，也是引用传递，无论函数定义时参数前面是否有&amp;符号）</li>
+<li>php4中，对象的 = 赋值是实现一份副本，这样存在很多问题，在不知不觉中我们可能会拷贝很多份副本。</li>
+<li>php5中，对象的 = 赋值和传递都是引用。要想实现拷贝副本，php提供了clone函数实现。</li>
+<li>clone完全copy了一份副本。但是clone时，我们可能不希望copy源对象的所有内容，那我们可以利用__clone来操作。</li>
+<li>在<strong>clone（）中，我们可以进行一些操作。注意，这些操作，也就是</strong>clone函数是作用于拷贝的副本对象上的</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line">实现对象这种的深拷贝，有两种方法：</div><div class="line">例子<span class="number">1</span>：重写<span class="keyword">clone</span>函数</div><div class="line"><span class="meta">&lt;?php</span></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</div><div class="line">    <span class="keyword">public</span> $a=<span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestOne</span></span>&#123;</div><div class="line">    <span class="keyword">public</span> $b=<span class="number">1</span>;</div><div class="line">    <span class="keyword">public</span> $obj;</div><div class="line">    <span class="comment">//包含了一个对象属性，clone时，它会是浅拷贝</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;obj = <span class="keyword">new</span> Test();</div><div class="line">    &#125;</div><div class="line">     </div><div class="line">    <span class="comment">//方法一：重写clone函数</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__clone</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;obj = <span class="keyword">clone</span> <span class="keyword">$this</span>-&gt;obj;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"> </div><div class="line">$m = <span class="keyword">new</span> TestOne();</div><div class="line">$n = <span class="keyword">clone</span> $m;</div><div class="line"> </div><div class="line">$n-&gt;b = <span class="number">2</span>;</div><div class="line"><span class="keyword">echo</span> $m-&gt;b;<span class="comment">//输出原来的1</span></div><div class="line"><span class="keyword">echo</span> PHP_EOL;</div><div class="line"><span class="comment">//可以看到，普通属性实现了深拷贝，改变普通属性b，不会对源对象有影响</span></div><div class="line"> </div><div class="line"><span class="comment">//由于改写了clone函数，现在对象属性也实现了真正的深拷贝，对新对象的改变，不会影响源对象</span></div><div class="line">$n-&gt;obj-&gt;a = <span class="number">3</span>;</div><div class="line"><span class="keyword">echo</span> $m-&gt;obj-&gt;a;<span class="comment">//输出1，不随新对象改变，还是保持了原来的属性</span></div><div class="line"> </div><div class="line">例子<span class="number">2</span>：序列化和反序列化</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</div><div class="line">    <span class="keyword">public</span> $a=<span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"> </div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">TestOne</span></span>&#123;</div><div class="line">    <span class="keyword">public</span> $b=<span class="number">1</span>;</div><div class="line">    <span class="keyword">public</span> $obj;</div><div class="line">    <span class="comment">//包含了一个对象属性，clone时，它会是浅拷贝</span></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;obj = <span class="keyword">new</span> Test();</div><div class="line">    &#125;</div><div class="line">     </div><div class="line">&#125;</div><div class="line"> </div><div class="line">$m = <span class="keyword">new</span> TestOne();</div><div class="line"><span class="comment">//方法二，序列化反序列化实现对象深拷贝</span></div><div class="line">$n = serialize($m);</div><div class="line">$n = unserialize($n);</div><div class="line"> </div><div class="line">$n-&gt;b = <span class="number">2</span>;</div><div class="line"><span class="keyword">echo</span> $m-&gt;b;<span class="comment">//输出原来的1</span></div><div class="line"><span class="keyword">echo</span> PHP_EOL;</div><div class="line"><span class="comment">//可以看到，普通属性实现了深拷贝，改变普通属性b，不会对源对象有影响</span></div><div class="line"> </div><div class="line"> </div><div class="line">$n-&gt;obj-&gt;a = <span class="number">3</span>;</div><div class="line"><span class="keyword">echo</span> $m-&gt;obj-&gt;a;<span class="comment">//输出1，不随新对象改变，还是保持了原来的属性,可以看到，序列化和反序列化可以实现对象的深拷贝</span></div><div class="line">  </div><div class="line">例子<span class="number">3</span>：json_encode之后再json_decode,实现赋值</div></pre></td></tr></table></figure>
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://www/lyj1215.com/2017/09/08/copy/" title="深拷贝和浅拷贝" target="_blank" rel="external">http://www/lyj1215.com/2017/09/08/copy/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/liuyajuan15" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/img/php.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/liuyajuan15" target="_blank"><span class="text-dark">lyj</span><small class="ml-1x">刘亚娟</small></a></h3>
+        <div>坚持就是胜利。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+       
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMDc0NC83Mjk2">
+  <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+      
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2017/09/12/regex1/" title="正则表达式基本介绍"><i class="fa fa-angle-left" aria-hidden="true"></i>&nbsp;&nbsp;上一篇</a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2017/09/08/laravel-3/" title="laravel框架中常用PHP语法">下一篇&nbsp;&nbsp;<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning hidden-xs" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  
+  
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-tit">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="donate-payimg">
+            <img src="/img/alipay.png" alt="扫码支持" title="扫一扫" />
+          </div>
+          <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+          <div class="donate-payselect">
+            <div class="pay_item checked" data-id="alipay" data-src="/img/alipay.png">
+              <div class="radio">
+                <input type="radio" name="payment" id="input-alipay" value="alipay" checked>
+                <label class="pay_logo clickable" for="input-alipay"><img src="/images/donate/alipay.jpg" alt="支付宝" /></label>
+              </div>
+            </div>
+            <div class="pay_item" data-id="weipay" data-src="/img/wechat.png">
+              <div class="radio">
+                <input type="radio" name="payment" id="input-weipay" value="weipay">
+                <label class="pay_logo clickable" for="input-weipay"><img src="/images/donate/weipay.jpg" alt="微信支付" /></label>
+              </div>
+            </div>
+          </div>
+          <div class="text-grey">
+            <p>打开<span id="donate-pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/liuyajuan15" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="fa fa-github"></i></a></li>
+        
+        <li><a href="https://weibo.com/p/1005055677293838/home?from=page_100505&mod=TAB#place" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="fa fa-weibo"></i></a></li>
+        
+        <li><a href="/" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="fa fa-twitter"></i></a></li>
+        
+        <li><a href="/" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="fa fa-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="fa fa-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.js"></script>
+<script src="/js/application.js"></script>
+  
+    
+    
+    
+        <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+    
+    
+        
+<script defer src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+        
+    
+<script defer type="text/javascript">
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+
+    
+    
+
+
+
+</body>
+</html>

@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang=zh>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="Cache-Control" content="no-transform" />
+  <meta http-equiv="Cache-Control" content="no-siteapp" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="format-detection" content="telephone=no,email=no,adress=no">
+  <!-- Color theme for statusbar -->
+  <meta name="theme-color" content="#000000" />
+  <!-- 强制页面在当前窗口以独立页面显示,防止别人在框架里调用页面 -->
+  <meta http-equiv="window-target" content="_top" />
+  
+  
+  <title>正则表达式测试题 | lyjの博客</title>
+  <meta name="description" content="正则掌握程度测试题,以下测试题来自于 https://www.zybuluo.com/Zjmainstay/note/709093， 答案是我自己的分析，欢迎各位进行批评与指导,部分习题答案后续不上   一.分组提取/非捕获组 二.单字符或 三.多字符或 四.分组引用 五.匹配换行数据 六.存在（或） 七. 存在（与） 八. 特殊限制（环视否定） 九. 替换分组使用 十. 分组可选 十一. 单字">
+<meta name="keywords" content="正则表达式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="正则表达式测试题">
+<meta property="og:url" content="http://www/lyj1215.com/2017/09/13/regex2/index.html">
+<meta property="og:site_name" content="lyjの博客">
+<meta property="og:description" content="正则掌握程度测试题,以下测试题来自于 https://www.zybuluo.com/Zjmainstay/note/709093， 答案是我自己的分析，欢迎各位进行批评与指导,部分习题答案后续不上   一.分组提取/非捕获组 二.单字符或 三.多字符或 四.分组引用 五.匹配换行数据 六.存在（或） 七. 存在（与） 八. 特殊限制（环视否定） 九. 替换分组使用 十. 分组可选 十一. 单字">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-09-23T04:12:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="正则表达式测试题">
+<meta name="twitter:description" content="正则掌握程度测试题,以下测试题来自于 https://www.zybuluo.com/Zjmainstay/note/709093， 答案是我自己的分析，欢迎各位进行批评与指导,部分习题答案后续不上   一.分组提取/非捕获组 二.单字符或 三.多字符或 四.分组引用 五.匹配换行数据 六.存在（或） 七. 存在（与） 八. 特殊限制（环视否定） 九. 替换分组使用 十. 分组可选 十一. 单字">
+  <!-- Canonical links -->
+  <link rel="canonical" href="http://www/lyj1215.com/2017/09/13/regex2/index.html">
+  
+    <link rel="alternate" href="/atom.xml" title="lyjの博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png" type="image/x-icon">
+  
+  <!-- font-awesome CSS -->
+  <link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/style.css">
+  
+    
+    
+
+</head>
+
+
+<body class="main-center" itemscope itemtype="http://schema.org/WebPage">
+  <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+  <div class="slimContent">
+    <div class="navbar-header">
+      
+      
+      <div class="profile-block text-center">
+        <a id="avatar" href="https://github.com/liuyajuan15" target="_blank">
+          <img class="thumb-xl img-circle img-rotate" src="/img/php.jpg" width="200" height="200">
+        </a>
+        <h2 id="name" class="hidden-xs hidden-sm">lyj</h2>
+        <h3 id="title" class="hidden-xs hidden-sm hidden-md">刘亚娟</h3>
+        <small id="location" class="text-muted hidden-xs hidden-sm"><i class="fa fa-map-marker"></i> Beijing, China</small>
+      </div>
+      
+      <div class="search" id="search-form-wrap">
+
+    <form class="search-form sidebar-form">
+        <div class="input-group">
+            <input type="text" class="search-form-input form-control" placeholder="搜索" />
+            <span class="input-group-btn">
+                <button type="submit" class="search-form-submit btn btn-flat"><i class="fa fa-search"></i></button>
+            </span>
+        </div>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." x-webkit-speech />
+            <button type="button" class="close ins-close ins-selectable" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            <!-- <span class="ins-close ins-selectable"><i class="fa fa-times"></i></span> -->
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+
+</div>
+      <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-navbar" aria-controls="main-navbar" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+    <nav id="main-navbar" class="collapse navbar-collapse" itemscope itemtype="http://schema.org/SiteNavigationElement" role="navigation">
+      <ul class="nav navbar-nav main-nav">
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/.">
+            
+            <i class="fa fa-fw fa-dashboard"></i>
+            
+            <span class="menu-title">首页</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives">
+            
+            <i class="fa fa-fw fa-delicious"></i>
+            
+            <span class="menu-title">归档</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-links">
+          <a href="/links">
+            
+            <i class="fa fa-fw fa-gg"></i>
+            
+            <span class="menu-title">友链</span>
+          </a>
+        </li>
+        
+        
+        
+        <li class="menu-item menu-item-about active">
+          <a href="/about">
+            
+            <i class="fa fa-fw fa-coffee"></i>
+            
+            <span class="menu-title">关于</span>
+          </a>
+        </li>
+        
+      </ul>
+      
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/liuyajuan15" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="fa fa-github"></i></a></li>
+        
+        <li><a href="https://weibo.com/p/1005055677293838/home?from=page_100505&mod=TAB#place" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="fa fa-weibo"></i></a></li>
+        
+        <li><a href="/" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="fa fa-twitter"></i></a></li>
+        
+        <li><a href="/" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="fa fa-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="fa fa-rss"></i></a></li>
+        
+    </ul>
+
+    </nav>
+  </div>
+</header>
+
+  
+    <aside class="sidebar" itemscope itemtype="http://schema.org/WPSideBar">
+  <div class="slimContent">
+    
+      <div class="widget">
+    <h3 class="widget-title">公告</h3>
+    <div class="widget-body">
+        <div id="board">
+            
+            <p>您好，您是第<span id="busuanzi_value_site_uv">0</span>位访客</p>
+            
+            <div class="content">
+                <p>欢迎交流与分享经验!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget-body">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/PHP/">PHP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/其他/">其他</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/安全/">安全</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/algorithm/">数据结构与算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/other/">杂文</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/框架分析/">框架分析</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/正则表达式/">正则表达式</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/环境搭建/">环境搭建</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/design-mode/">设计模式</a><span class="category-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget-body">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">九月 2017</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/07/">七月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">三月 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">二月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">一月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+    
+      
+  <div class="widget">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget-body tagcloud">
+      <a href="/tags/MySQL/" style="font-size: 13px;">MySQL</a> <a href="/tags/PHP/" style="font-size: 13.33px;">PHP</a> <a href="/tags/UML/" style="font-size: 13px;">UML</a> <a href="/tags/awk/" style="font-size: 13px;">awk</a> <a href="/tags/git/" style="font-size: 13.33px;">git</a> <a href="/tags/github/" style="font-size: 13px;">github</a> <a href="/tags/hexo/" style="font-size: 13.67px;">hexo</a> <a href="/tags/laravel/" style="font-size: 13px;">laravel</a> <a href="/tags/mac/" style="font-size: 13px;">mac</a> <a href="/tags/其他/" style="font-size: 13.33px;">其他</a> <a href="/tags/单例/" style="font-size: 13px;">单例</a> <a href="/tags/字符串/" style="font-size: 13px;">字符串</a> <a href="/tags/安全，SQL注入/" style="font-size: 13px;">安全，SQL注入</a> <a href="/tags/other/" style="font-size: 13px;">杂文</a> <a href="/tags/正则表达式/" style="font-size: 14px;">正则表达式</a> <a href="/tags/环境搭建/" style="font-size: 13.67px;">环境搭建</a> <a href="/tags/算法/" style="font-size: 13px;">算法</a> <a href="/tags/design-mode/" style="font-size: 13.67px;">设计模式</a>
+    </div>
+  </div>
+
+    
+  </div>
+</aside>
+
+  
+  
+<main class="main" role="main">
+  <div class="content">
+  <article id="post-regex2" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+    
+    <div class="article-header">
+      
+        
+  
+    <h1 class="article-title" itemprop="name">
+      正则表达式测试题
+    </h1>
+  
+
+      
+      <div class="article-meta">
+        <span class="article-date">
+    <i class="fa fa-calendar-check-o"></i>
+	<a href="/2017/09/13/regex2/" class="article-date">
+	  <time datetime="2017-09-13T02:28:41.000Z" itemprop="datePublished">2017-09-13</time>
+	</a>
+</span>
+        
+  <span class="article-category">
+    <i class="fa fa-folder"></i>
+    <a class="article-category-link" href="/categories/正则表达式/">正则表达式</a>
+  </span>
+
+        
+  <span class="article-tag">
+    <i class="fa fa-tag"></i>
+	<a class="article-tag-link" href="/tags/正则表达式/">正则表达式</a>
+  </span>
+
+
+        
+	<span class="article-read hidden-xs">
+	    <i class="fa fa-eye" aria-hidden="true"></i>
+	    <span id="busuanzi_container_page_pv">
+			阅读<span id="busuanzi_value_page_pv">0</span>次
+		</span>
+	</span>
+
+
+        <span class="post-comment"><i class="fa fa-commenting-o"></i> <a href="/2017/09/13/regex2/#comments" class="article-comment-link">评论</a></span>
+        
+      </div>
+      
+    </div>
+    <div class="article-entry markdown-body" itemprop="articleBody">
+      
+        <blockquote>
+<p>正则掌握程度测试题,以下测试题来自于 <a href="https://www.zybuluo.com/Zjmainstay/note/709093，" target="_blank" rel="external">https://www.zybuluo.com/Zjmainstay/note/709093，</a> 答案是我自己的分析，欢迎各位进行批评与指导,部分习题答案后续不上</p>
+</blockquote>
+<ul>
+<li><a href="#one">一.分组提取/非捕获组</a></li>
+<li><a href="#two">二.单字符或</a></li>
+<li><a href="#three">三.多字符或</a></li>
+<li><a href="#four">四.分组引用</a></li>
+<li><a href="#five">五.匹配换行数据</a></li>
+<li><a href="#six">六.存在（或）</a></li>
+<li><a href="#seven">七. 存在（与）</a></li>
+<li><a href="#eight">八. 特殊限制（环视否定）</a></li>
+<li><a href="#nine">九. 替换分组使用</a></li>
+<li><a href="#ten">十. 分组可选</a></li>
+<li><a href="#eleven">十一. 单字符拆分（数字）</a></li>
+<li><a href="#twelve">十二. 贪婪模式</a></li>
+<li><a href="#thirteen">十三. 非贪婪模式</a></li>
+<li><a href="#fourteen">十四. 占用模式(PCRE)</a></li>
+<li><a href="#fiveteen">十五. |字符分界（|的作用域）</a></li>
+<li><a href="#sixteen">十六. 元字符转义</a></li>
+<li><a href="#seventeen">十七. 分隔符绕过（PCRE）</a></li>
+<li><a href="#eighteen">十八. 匹配溢出排除</a></li>
+<li><a href="#nineteen">十九. 环视循环提取格式化</a></li>
+<li><a href="#twenty">二十. 三段论应用</a></li>
+</ul>
+<h3 id="一-分组提取-非捕获组"><a href="#一-分组提取-非捕获组" class="headerlink" title="一. 分组提取/非捕获组 "></a>一. <a name="one">分组提取/非捕获组 </a></h3><blockquote>
+<p>分组，是正则里一个非常重要的概念，我们需要针对某个区域提取数据，往往需要依赖分组。而分组，其实就是正则里()括住的部分。</p>
+</blockquote>
+<ul>
+<li><p>分组提取 </p>
+  <figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">需求：在分组<span class="number">1</span>中匹配meta中author属性的值</div><div class="line">源串：</div><div class="line">   &lt;meta author=<span class="string">"Zjmainstay"</span> /&gt;</div><div class="line">   another author=<span class="string">"Zjmainstay too"</span></div><div class="line">预期：分组<span class="number">1</span>得到Zjmainstay</div><div class="line">正则：<span class="string">'/&lt;meta[^&gt;]author="(.*?)".*?\/&gt;/'</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>非捕获组</p>
+<blockquote>
+<p>针对上面的分组，有时候，我们并不需要捕获某个分组的内容，我们可以使用非捕获组(?:表达式)，从而不捕获表达式部分内容到分组中。</p>
+</blockquote>
+</li>
+</ul>
+<pre><code><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">源串：</div><div class="line">a</div><div class="line">ab</div><div class="line">abc</div><div class="line">abcd</div><div class="line">预期：匹配得到 ab 和 abcd，不包含分组<span class="number">1</span></div><div class="line">正则： <span class="string">'/^(?:\w\w)+$/m'</span></div></pre></td></tr></table></figure>
+</code></pre><h3 id="二-单字符或"><a href="#二-单字符或" class="headerlink" title="二. 单字符或"></a><a name="two">二. 单字符或</a></h3><blockquote>
+<p>或条件是正则使用过程中常用的概念，比如，密码由字母或数字组成，这里就用到了或条件，而且，由于字母或数字都是单个字符，因此，可以使用[a-z0-9]这样的单字符或语法实现。<br> 常犯错误：匹配a或b写成[a|b]，此表达式实际上表示a或b或|，在[]内部的|表示其本身，注意区分(a|b)表示a或b的写法。</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">需求：匹配由 A/S/D/F <span class="number">4</span>个字母(区分大小写)组成的长度为<span class="number">3</span>字符串</div><div class="line">源串：</div><div class="line">ABC</div><div class="line">ASD</div><div class="line">ADS</div><div class="line">ASF</div><div class="line">BBC</div><div class="line">A|S</div><div class="line">A|D</div><div class="line">ASDF</div><div class="line">预期：以[]元字符获得<span class="number">3</span>个字母的或集，匹配 ASD/ADS/ASF <span class="number">3</span>组数据</div><div class="line">正则：<span class="string">'/\b[ASDF]&#123;3&#125;\b/m'</span></div></pre></td></tr></table></figure>
+<h3 id="三-多字符或"><a href="#三-多字符或" class="headerlink" title="三. 多字符或"></a><a name="three">三. 多字符或</a></h3><blockquote>
+<p>相对单字符或条件，多字符或也是很常见的，比如，我们需要匹配http或ftp两个协议头的url，就需要^(http|ftp)://.+$这样的语法来实现。</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">需求：匹配每行数据中以.jpg/.jpeg/.png/.gif结尾的图片名称（含后缀）</div><div class="line">源串：</div><div class="line">image.jpg</div><div class="line">image.jpeg</div><div class="line">image.png</div><div class="line">image.gif</div><div class="line">not_image.txt</div><div class="line">not_image.doc</div><div class="line">not_image.xls</div><div class="line">not_image.ppt</div><div class="line">预期：匹配 image.jpg/image.jpeg/image.png/image.gif <span class="number">4</span>个结果</div><div class="line">正则：<span class="string">'/.*?\.(jpg|jpeg|png|gif)/m'</span></div></pre></td></tr></table></figure>
+<h3 id="四-分组引用"><a href="#四-分组引用" class="headerlink" title="四. 分组引用"></a><a name="four">四. 分组引用</a></h3><blockquote>
+<p>前面介绍了分组，那某个分组在我们匹配过程中重复出现，又该如何处理？分组引用恰恰解决这个问题。比如，匹配出现重复单词的一行数据，我们可以这么写（多行模式）：/^.<em>?(\b\S+\b).</em>?\1.*$/m，\1表示引用前面分组1中匹配到的内容，也就是重复的单词内容。</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">需求：匹配连续相同<span class="number">3</span>次的数字</div><div class="line">源串：</div><div class="line"><span class="number">111</span></div><div class="line"><span class="number">121</span></div><div class="line"><span class="number">112</span></div><div class="line"><span class="number">222</span></div><div class="line">预期：匹配 <span class="number">111</span>/<span class="number">222</span> 两组数据</div><div class="line">正则：<span class="string">'/(\d)\1\1/m'</span></div></pre></td></tr></table></figure>
+<h3 id="五-匹配换行数据"><a href="#五-匹配换行数据" class="headerlink" title="五. 匹配换行数据"></a><a name="five">五. 匹配换行数据</a></h3><blockquote>
+<p>“我的正则本来好好的，突然不行了！”这个是很多正则新人遇到的问题，而这个问题，很多时候，就是因为原来正则中的.不能匹配新数据里的换行导致的。这时候，只需要把.改成[\s\S]这样的表达式就可以了。这个表达式表示空格或非空格，也就是任意字符啦。</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">需求：分别使用单行模式和普通模式匹配id=<span class="string">"author"</span>的div中数据，div标签不在同一行</div><div class="line">源串：</div><div class="line">&lt;div id=<span class="string">"author"</span>&gt;</div><div class="line">Zjmainstay</div><div class="line">&lt;/div&gt;</div><div class="line">预期：Zjmainstay</div><div class="line">正则<span class="number">1</span>：<span class="string">'@&lt;div[^&gt;]id="author"&gt;(.*?)&lt;/div&gt;@ms'</span></div><div class="line">正则<span class="number">2</span>：</div></pre></td></tr></table></figure>
+<h3 id="六-存在（或）"><a href="#六-存在（或）" class="headerlink" title="六. 存在（或）"></a><a name="six">六. 存在（或）</a></h3><ul>
+<li>匹配多种或条件的数据，没有特殊限制 </li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">需求：匹配每行中包含“作者”或者“读者”的数据</div><div class="line">源串：</div><div class="line">本文的作者是Zjmainstay</div><div class="line">本文有很多读者</div><div class="line">读者可以是任何一个地方的人</div><div class="line">这里的任何一个地方说明读者也能在国外</div><div class="line">什么乱七八糟的推理</div><div class="line">你不匹配我，凭什么要我推荐你的博客 www.zjmainstay.cn</div><div class="line">预期：匹配</div><div class="line">本文的作者是Zjmainstay</div><div class="line">本文有很多读者</div><div class="line">读者可以是任何一个地方的人</div><div class="line">这里的任何一个地方说明读者也能在国外</div><div class="line">正则：$re = <span class="string">'/^.*?(作者|读者).*?$/m'</span></div></pre></td></tr></table></figure>
+<ul>
+<li>匹配多种或条件的数据，有特殊限制（不使用环视）</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">需求：匹配每行中“读者”在开头或结尾的数据</div><div class="line">源串：</div><div class="line">本文作者是Zjmainstay，有很多读者</div><div class="line">读者可以是任何一个地方的人</div><div class="line">这里的任何一个地方说明读者也能在国外</div><div class="line">预期：匹配</div><div class="line">本文作者是Zjmainstay，有很多读者</div><div class="line">读者可以是任何一个地方的人</div><div class="line">正则：</div></pre></td></tr></table></figure>
+<ul>
+<li>匹配多种或条件的数据，有特殊限制（使用环视）</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">需求：匹配每行中“读者”在开头或结尾的数据</div><div class="line">源串：</div><div class="line">本文作者是Zjmainstay，有很多读者</div><div class="line">读者可以是任何一个地方的人</div><div class="line">这里的任何一个地方说明读者也能在国外</div><div class="line">预期：匹配</div><div class="line">本文作者是Zjmainstay，有很多读者</div><div class="line">读者可以是任何一个地方的人</div><div class="line">正则：</div></pre></td></tr></table></figure>
+<h3 id="七-存在（与）"><a href="#七-存在（与）" class="headerlink" title="七. 存在（与）"></a><a name="seven">七. 存在（与）</a></h3><p>校验密码必须包含字母、数字和特殊字符，6-16位</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">需求：校验密码必须包含字母、数字和特殊字符，<span class="number">6</span><span class="number">-16</span>位，假定特殊字符为 -_= 三个字符</div><div class="line">源串：</div><div class="line"><span class="number">12345</span></div><div class="line"><span class="number">123456</span></div><div class="line"><span class="number">1234561234561234</span></div><div class="line"><span class="number">12345612345612345</span></div><div class="line">a1234</div><div class="line">a12345</div><div class="line"><span class="number">-1234</span></div><div class="line"><span class="number">-12345</span></div><div class="line">a<span class="number">-123</span></div><div class="line">a<span class="number">-1234</span></div><div class="line">a<span class="number">-1234</span>a<span class="number">-1234</span>a<span class="number">-12</span></div><div class="line">a<span class="number">-1234</span>a<span class="number">-1234</span>a<span class="number">-1234</span></div><div class="line">aaaaa</div><div class="line">aaaaaa</div><div class="line">-_=-_</div><div class="line">-_=-_=</div><div class="line">预期：匹配</div><div class="line">a<span class="number">-1234</span></div><div class="line">a<span class="number">-1234</span>a<span class="number">-1234</span>a<span class="number">-12</span></div><div class="line">正则：</div></pre></td></tr></table></figure>
+<h3 id="八-特殊限制（环视否定）"><a href="#八-特殊限制（环视否定）" class="headerlink" title="八. 特殊限制（环视否定）"></a><a name="eight">八. 特殊限制（环视否定）</a></h3><ul>
+<li>使用\d{1,3}匹配1-999的数据，不能以0开头</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">需求：使用\d&#123;<span class="number">1</span>,<span class="number">3</span>&#125;匹配每行中<span class="number">1</span><span class="number">-999</span>的数据，不能以<span class="number">0</span>开头</div><div class="line">源串：</div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">10</span></div><div class="line"><span class="number">100</span></div><div class="line"><span class="number">999</span></div><div class="line"><span class="number">1000</span></div><div class="line"><span class="number">01</span></div><div class="line"><span class="number">001</span></div><div class="line">预期：匹配</div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">10</span></div><div class="line"><span class="number">100</span></div><div class="line"><span class="number">999</span></div><div class="line">正则：<span class="string">'/(?!0)(?&lt;!\d)\d&#123;1,3&#125;\b/'</span></div></pre></td></tr></table></figure>
+<ul>
+<li>匹配除了span标签外的所有标签</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">需求：匹配除了&lt;span&gt;内容&lt;/span&gt;标签外的所有&lt;tagName&gt;内容&lt;/tagName&gt;格式标签</div><div class="line">源串：</div><div class="line">&lt;div&gt;匹配我&lt;/div&gt;</div><div class="line">&lt;span&gt;不匹配我&lt;/span&gt;</div><div class="line">&lt;p&gt;匹配我&lt;/p&gt;</div><div class="line">&lt;i&gt;匹配我&lt;/i&gt;</div><div class="line">预期：匹配</div><div class="line">&lt;div&gt;匹配我&lt;/div&gt;</div><div class="line">&lt;p&gt;匹配我&lt;/p&gt;</div><div class="line">&lt;i&gt;匹配我&lt;/i&gt;</div><div class="line">正则：</div></pre></td></tr></table></figure>
+<h3 id="九-替换分组使用"><a href="#九-替换分组使用" class="headerlink" title="九. 替换分组使用"></a><a name="nine">九. 替换分组使用</a></h3><ul>
+<li>给源串每个链接加上<a href="http://www.zjmainstay.cn前缀" target="_blank" rel="external">http://www.zjmainstay.cn前缀</a></li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">需求：给源串每个链接加上http:<span class="comment">//www.zjmainstay.cn前缀</span></div><div class="line">源串：</div><div class="line">&lt;a id=<span class="string">"link-1"</span> href=<span class="string">"/regexp-one"</span>&gt;正则文章合集（All In One)&lt;/a&gt;</div><div class="line">&lt;a id=<span class="string">"link-2"</span> href=<span class="string">"/my-regexp"</span>&gt;正则入门教程&lt;/a&gt;</div><div class="line">&lt;a id=<span class="string">"link-3"</span> href=<span class="string">"/deep-regexp"</span>&gt;正则高级教程&lt;/a&gt;</div><div class="line">&lt;a id=<span class="string">"link-4"</span> href=<span class="string">"/regexp-lookaround"</span>&gt;正则环视详解&lt;/a&gt;</div><div class="line">&lt;a id=<span class="string">"link-5"</span> href=<span class="string">"/php-curl"</span>&gt;PHP cURL应用&lt;/a&gt;</div><div class="line">预期：替换得到</div><div class="line">&lt;a id=<span class="string">"link-1"</span> href=<span class="string">"http://www.zjmainstay.cn/regexp-one"</span>&gt;正则文章合集（All In One)&lt;/a&gt;</div><div class="line">&lt;a id=<span class="string">"link-2"</span> href=<span class="string">"http://www.zjmainstay.cn/my-regexp"</span>&gt;正则入门教程&lt;/a&gt;</div><div class="line">&lt;a id=<span class="string">"link-3"</span> href=<span class="string">"http://www.zjmainstay.cn/deep-regexp"</span>&gt;正则高级教程&lt;/a&gt;</div><div class="line">&lt;a id=<span class="string">"link-4"</span> href=<span class="string">"http://www.zjmainstay.cn/regexp-lookaround"</span>&gt;正则环视详解&lt;/a&gt;</div><div class="line">&lt;a id=<span class="string">"link-5"</span> href=<span class="string">"http://www.zjmainstay.cn/php-curl"</span>&gt;PHP cURL应用&lt;/a&gt;</div><div class="line">查找：</div><div class="line">替换：</div></pre></td></tr></table></figure>
+<ul>
+<li>将每行数据格式化为一条SQL语句</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">需求：将每行特定格式数据格式化为SQL语句</div><div class="line">源串：</div><div class="line"><span class="number">1</span> <span class="number">2017</span><span class="number">-04</span><span class="number">-11</span> Zjmainstay</div><div class="line"><span class="number">2</span> <span class="number">2017</span><span class="number">-04</span><span class="number">-12</span> Nobody</div><div class="line"><span class="number">3</span> <span class="number">2017</span><span class="number">-04</span><span class="number">-13</span> Somebody</div><div class="line">预期：替换得到</div><div class="line">INSERT INTO table_log(`id`, `created_at`, `author`) values(<span class="string">'1'</span>, <span class="string">'2017-04-11'</span>, <span class="string">'Zjmainstay'</span>);</div><div class="line">INSERT INTO table_log(`id`, `created_at`, `author`) values(<span class="string">'2'</span>, <span class="string">'2017-04-12'</span>, <span class="string">'Nobody'</span>);</div><div class="line">INSERT INTO table_log(`id`, `created_at`, `author`) values(<span class="string">'3'</span>, <span class="string">'2017-04-13'</span>, <span class="string">'Somebody'</span>);</div><div class="line">查找：</div><div class="line">替换：</div></pre></td></tr></table></figure>
+<h3 id="十-分组可选"><a href="#十-分组可选" class="headerlink" title="十. 分组可选"></a><a name="ten">十. 分组可选</a></h3><ul>
+<li>分组可选</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">需求：判断如果单词以A开头，匹配Apple；如果单词以B开头，匹配Banana；否则匹配<span class="keyword">Empty</span></div><div class="line">源串：</div><div class="line">Angle</div><div class="line">Apple</div><div class="line">Banana</div><div class="line">Best</div><div class="line"><span class="keyword">Empty</span></div><div class="line">预期：匹配</div><div class="line">Apple</div><div class="line">Banana</div><div class="line"><span class="keyword">Empty</span></div><div class="line">正则：</div></pre></td></tr></table></figure>
+<ul>
+<li>分组可选与分组引用</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">需求：匹配html标签的属性值，属性值可以由双引号、单引号、无单双引号定界</div><div class="line">源串：</div><div class="line">&lt;div id="I'm Zjmainstay" class="name" data-year=2017 age='27'&gt;</div><div class="line">预期：分组匹配</div><div class="line">I<span class="string">'m Zjmainstay</span></div><div class="line"><span class="string">author</span></div><div class="line"><span class="string">2017</span></div><div class="line"><span class="string">27</span></div><div class="line"><span class="string">正则：</span></div></pre></td></tr></table></figure>
+<h3 id="十一-单字符拆分（数字）"><a href="#十一-单字符拆分（数字）" class="headerlink" title="十一. 单字符拆分（数字）"></a><a name="eleven">十一. 单字符拆分（数字）</a></h3><p>匹配0.00-100.00的数值，可以有0-2位小数</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">需求：匹配<span class="number">0.00</span><span class="number">-100.00</span>的数值，可以有<span class="number">0</span><span class="number">-2</span>位小数，不能以小数点结尾，不能以<span class="number">2</span>个以上的<span class="number">0</span>开头</div><div class="line">思路：(<span class="number">100</span>|<span class="number">10</span><span class="number">-99</span>|<span class="number">0</span><span class="number">-9</span>) + <span class="number">0</span><span class="number">-2</span>小数位 + 排除小数点结尾、<span class="number">2</span>个以上<span class="number">0</span>开头的情况</div><div class="line">源串：</div><div class="line"><span class="number">0</span></div><div class="line"><span class="number">1</span></div><div class="line"><span class="number">0.0</span></div><div class="line"><span class="number">0.00</span></div><div class="line"><span class="number">9.00</span></div><div class="line"><span class="number">18.00</span></div><div class="line"><span class="number">27.0</span></div><div class="line"><span class="number">36.00</span></div><div class="line"><span class="number">45.00</span></div><div class="line"><span class="number">54.00</span></div><div class="line"><span class="number">63.00</span></div><div class="line"><span class="number">72.00</span></div><div class="line"><span class="number">81.00</span></div><div class="line"><span class="number">90.00</span></div><div class="line"><span class="number">99.99</span></div><div class="line"><span class="number">100.00</span></div><div class="line"><span class="number">0.</span></div><div class="line"><span class="number">001</span></div><div class="line"><span class="number">100.01</span></div><div class="line"><span class="number">100.001</span></div><div class="line"><span class="number">101</span></div><div class="line">预期：匹配<span class="number">0.00</span>~<span class="number">100.00</span></div><div class="line">正则：</div></pre></td></tr></table></figure>
+<h3 id="十二-贪婪模式"><a href="#十二-贪婪模式" class="headerlink" title="十二. 贪婪模式"></a><a name="twelve">十二. 贪婪模式</a></h3><ul>
+<li>匹配链接中的文件名</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">需求：利用贪婪模式，分组<span class="number">1</span>得到每行链接中的文件名</div><div class="line">源串：</div><div class="line">http:<span class="comment">//localhost.com/a/b/c/d/file1.txt</span></div><div class="line">https:<span class="comment">//localhost.com/a/b/file2long.jpg</span></div><div class="line">预期：分组<span class="number">0</span>匹配行数据，分组<span class="number">1</span>匹配文件名</div><div class="line">file1.txt</div><div class="line">file2long.jpg</div><div class="line">正则：</div></pre></td></tr></table></figure>
+<ul>
+<li>限定字符贪婪优化匹配性能</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">需求：匹配div id=<span class="string">"author"</span>的标签内容</div><div class="line">源串：</div><div class="line">&lt;div id="author" class="author-text something-useless"&gt;Zjmainstay&lt;/div&gt;</div><div class="line">预期：利用贪婪模式去掉div中的噪点（无关数据），分组<span class="number">1</span>匹配到Zjmainstay</div><div class="line">正则：</div></pre></td></tr></table></figure>
+<h3 id="十三-非贪婪模式"><a href="#十三-非贪婪模式" class="headerlink" title="十三. 非贪婪模式"></a><a name="thirteen">十三. 非贪婪模式</a></h3><blockquote>
+<p>贪婪模式，正则会优先尽可能少地匹配能匹配到的内容。当剩余正则匹配剩余部分字符（源串）但无法满足匹配时，非贪婪部分继续匹配更多内容，尝试满足剩余部分字符的匹配。</p>
+</blockquote>
+<p>匹配p标签内容</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">需求：匹配p标签内容</div><div class="line">源串：</div><div class="line">&lt;p&gt;内容<span class="number">1</span>&lt;/p&gt;&lt;p&gt;内容<span class="number">2</span>&lt;/p&gt;</div><div class="line">预期：</div><div class="line">在分组<span class="number">1</span>中匹配到内容<span class="number">1</span>和内容<span class="number">2</span></div><div class="line">正则：</div></pre></td></tr></table></figure>
+<h3 id="十四-占用模式-PCRE"><a href="#十四-占用模式-PCRE" class="headerlink" title="十四. 占用模式(PCRE)"></a><a name="fourteen">十四. 占用模式(PCRE)</a></h3><blockquote>
+<p>贪婪模式后再加一个+量词，如.++，效果是贪婪而且不回溯。<br> 暂时没有想到应用场景。</p>
+</blockquote>
+<h3 id="十五-字符分界（-的作用域）"><a href="#十五-字符分界（-的作用域）" class="headerlink" title="十五. |字符分界（|的作用域）"></a><a name="fiveteen">十五. |字符分界（|的作用域）</a></h3><blockquote>
+<p>|作为或条件分隔符，它的分隔区间常常存在误用。在使用|字符的过程中，我们常常需要结合()来对它进行限定。如，^([0-9]+|[a-z]+)$表示纯数字或纯字母，如果没有()，那它又是另一种意思了。^[0-9]+|[a-z]+$等价于^[0-9]+或[a-z]+$，因此，它表示数字开头或者字母结尾，跟我们的需求有了很大的差别。</p>
+</blockquote>
+<p>|字符分界</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">需求：在分组<span class="number">1</span>中匹配css或script的链接</div><div class="line">源串：</div><div class="line">&lt;script src=<span class="string">"main.min.js"</span> type=<span class="string">"text/javascript"</span>&gt;&lt;/script&gt;</div><div class="line">&lt;link rel=<span class="string">"stylesheet"</span> type=<span class="string">"text/css"</span> href=<span class="string">"main.css"</span>&gt;</div><div class="line">预期：</div><div class="line">main.min.js</div><div class="line">main.css</div><div class="line">正则：</div></pre></td></tr></table></figure>
+<h3 id="十六-元字符转义"><a href="#十六-元字符转义" class="headerlink" title="十六. 元字符转义"></a><a name="sixteen">十六. 元字符转义</a></h3><blockquote>
+<p>元字符，指正则中有特殊意义的字符，如.表示匹配除了换行符以外的任意字符，这个.就是元字符。在正则书写过程中，如果我们真的要匹配这个.，就需要对它进行转义，而不是让它使用正则的含义，比如，匹配域名里的.，我们就要写成/zjmainstay.cn/这样的正则。</p>
+</blockquote>
+<p>元字符转义</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">需求：表达式格式固定，提取其中的数值</div><div class="line">源串：</div><div class="line">(<span class="number">20</span>+<span class="number">170</span>)<span class="number">-5</span>*<span class="number">1</span>/<span class="number">5</span>=?</div><div class="line">预期：</div><div class="line">A:<span class="number">20</span></div><div class="line">B:<span class="number">170</span></div><div class="line">C:<span class="number">5</span></div><div class="line">D:<span class="number">1</span></div><div class="line">E:<span class="number">5</span></div><div class="line">F:?</div><div class="line">正则：</div><div class="line">替换：</div></pre></td></tr></table></figure>
+<h3 id="十七-分隔符绕过（PCRE）"><a href="#十七-分隔符绕过（PCRE）" class="headerlink" title="十七. 分隔符绕过（PCRE）"></a><a name="seventeen">十七. 分隔符绕过（PCRE）</a></h3><blockquote>
+<p>有时候，如果该语言支持多种分隔符，在写正则的过程中通常会通过规避分隔符的方式，减少对分隔符的转义，让正则看起来更清晰，写起来更舒服，当然，js中是不支持的。</p>
+</blockquote>
+<p>分隔符绕过</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">需求：在不对/转义的情况下匹配p标签内容</div><div class="line">源串：</div><div class="line">&lt;p&gt;内容<span class="number">1</span>&lt;/p&gt;&lt;p&gt;内容<span class="number">2</span>&lt;/p&gt;</div><div class="line">预期：</div><div class="line">在分组<span class="number">1</span>中匹配到内容<span class="number">1</span>和内容<span class="number">2</span></div><div class="line">正则：&lt;p&gt;([^&lt;]+)&lt;/p&gt;@m</div></pre></td></tr></table></figure>
+<h3 id="十八-匹配溢出排除"><a href="#十八-匹配溢出排除" class="headerlink" title="十八. 匹配溢出排除"></a><a name="eighteen">十八. 匹配溢出排除</a></h3><blockquote>
+<p>匹配溢出，这不是一个术语名词，是我自己的叫法，主要指正则匹配内容超出了我们预期，导致匹配得到非预期的结果。</p>
+</blockquote>
+<ul>
+<li>div标签匹配溢出</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">需求：匹配内容为数字的div</div><div class="line">源串：</div><div class="line">&lt;div class="aaa bbb"&gt;ABC&lt;/div&gt;&lt;div class="bbb ccc"&gt;123&lt;/div&gt;</div><div class="line">预期：</div><div class="line">&lt;div&gt;<span class="number">123</span>&lt;/div&gt;</div><div class="line">错误正则：/&lt;div.*<span class="meta">?&gt;</span>\d+&lt;\/div&gt;/</div><div class="line">正则：/&lt;div[^&gt;]*&gt;\d+&lt;\/div&gt;/</div></pre></td></tr></table></figure>
+<ul>
+<li>多字符排除</li>
+</ul>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line">需求：匹配不包含某个单词或词语的内容</div><div class="line">源串：</div><div class="line">http:<span class="comment">//www.zjmainstay.cn</span></div><div class="line">http:<span class="comment">//www.baidu.com</span></div><div class="line">http:<span class="comment">//www.qq.com</span></div><div class="line">预期：</div><div class="line">http:<span class="comment">//www.zjmainstay.cn</span></div><div class="line">http:<span class="comment">//www.qq.com</span></div><div class="line">正则：/http:\/\/www\.[^baidu].*/m</div><div class="line"></div><div class="line">需求：匹配不包含某个单词或词语的内容</div><div class="line">源串：</div><div class="line">A(<span class="string">"Excalibur"</span>, <span class="string">"誓约胜利之剑"</span>, LONG_SWORD, (SPFX_NOGEN | SPFX_RESTR | SPFX_SEEK | SPFX_DEFN | SPFX_INTEL | SPFX_SEARCH), </div><div class="line">  <span class="number">0</span>, <span class="number">0</span>, PHYS(<span class="number">5</span>, <span class="number">10</span>), DRLI(<span class="number">0</span>, <span class="number">0</span>), NO_CARY, <span class="number">0</span>, A_LAWFUL, PM_KNIGHT, NON_PM, <span class="number">4000</span>L, NO_COLOR);</div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment"> * Stormbringer only has a 2 because it can drain a level,</span></div><div class="line"><span class="comment"> * providing 8 more.</span></div><div class="line"><span class="comment"> */</span></div><div class="line">A(<span class="string">"Stormbringer"</span>, <span class="string">"兴风者"</span>, RUNESWORD,</div><div class="line">  (SPFX_RESTR | SPFX_ATTK | SPFX_DEFN | SPFX_INTEL | SPFX_DRLI), <span class="number">0</span>, <span class="number">0</span>,</div><div class="line">  DRLI(<span class="number">5</span>, <span class="number">2</span>), DRLI(<span class="number">0</span>, <span class="number">0</span>), NO_CARY, <span class="number">0</span>, A_CHAOTIC, NON_PM, NON_PM, <span class="number">8000</span>L,</div><div class="line">  NO_COLOR);</div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment"> * Mjollnir will return to the hand of the wielder when thrown</span></div><div class="line"><span class="comment"> * if the wielder is a Valkyrie wearing Gauntlets of Power.</span></div><div class="line"><span class="comment"> */</span></div><div class="line">A(<span class="string">"Mjollnir"</span>, <span class="string">"雷神之锤"</span>, WAR_HAMMER, <span class="comment">/* Mjo:llnir */</span></div><div class="line">  (SPFX_RESTR | SPFX_ATTK), <span class="number">0</span>, <span class="number">0</span>, ELEC(<span class="number">5</span>, <span class="number">24</span>), NO_DFNS, NO_CARY, <span class="number">0</span>,</div><div class="line">  A_NEUTRAL, PM_VALKYRIE, NON_PM, <span class="number">4000</span>L, NO_COLOR);</div><div class="line">A(<span class="string">"Cleaver"</span>, <span class="string">"撕裂者"</span>, BATTLE_AXE, SPFX_RESTR, <span class="number">0</span>, <span class="number">0</span>, PHYS(<span class="number">3</span>, <span class="number">6</span>), NO_DFNS, NO_CARY, <span class="number">0</span>, A_NEUTRAL, PM_BARBARIAN, NON_PM, <span class="number">1500</span>L, NO_COLOR);</div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment"> * Grimtooth glows in warning when elves are present, but its</span></div><div class="line"><span class="comment"> * damage bonus applies to all targets rather than just elves</span></div><div class="line"><span class="comment"> * (handled as special case in spec_dbon()).</span></div><div class="line"><span class="comment"> */</span></div><div class="line">A(<span class="string">"Grimtooth"</span>, <span class="string">"邪兽之牙"</span>, ORCISH_DAGGER, (SPFX_RESTR | SPFX_WARN | SPFX_DFLAG2),</div><div class="line">  <span class="number">0</span>, M2_ELF, PHYS(<span class="number">2</span>, <span class="number">6</span>), NO_DFNS,</div><div class="line">  NO_CARY, <span class="number">0</span>, A_CHAOTIC, NON_PM, PM_ORC, <span class="number">300</span>L, CLR_RED);</div><div class="line"><span class="comment">/*</span></div><div class="line"><span class="comment"> * Orcrist and Sting have same alignment as elves.</span></div><div class="line"><span class="comment"> *</span></div><div class="line"><span class="comment"> * The combination of SPFX_WARN+SPFX_DFLAG2+M2_value will trigger</span></div><div class="line"><span class="comment"> * EWarn_of_mon for all monsters that have the M2_value flag.</span></div><div class="line"><span class="comment"> * Sting and Orcrist will warn of M2_ORC monsters.</span></div><div class="line"><span class="comment"> */</span></div><div class="line">A(<span class="string">"Orcrist"</span>, <span class="string">"杀兽剑"</span>, ELVEN_BROADSWORD, (SPFX_WARN | SPFX_DFLAG2), <span class="number">0</span>, M2_ORC, PHYS(<span class="number">5</span>, <span class="number">0</span>), </div><div class="line">  NO_DFNS, NO_CARY, <span class="number">0</span>, A_CHAOTIC, NON_PM, PM_ELF, <span class="number">2000</span>L, CLR_BRIGHT_BLUE); <span class="comment">/* bright blue is actually light blue */</span></div><div class="line">预期：</div><div class="line">Excalibur=誓约胜利之剑</div><div class="line">Stormbringer=兴风者</div><div class="line">Mjollnir=雷神之锤</div><div class="line">Cleaver=撕裂者</div><div class="line">Grimtooth=邪兽之牙</div><div class="line">Orcrist=杀兽剑</div><div class="line">查找：</div><div class="line">替换：</div></pre></td></tr></table></figure>
+<h3 id="十九-环视循环提取格式化"><a href="#十九-环视循环提取格式化" class="headerlink" title="十九. 环视循环提取格式化"></a><a name="nineteen">十九. 环视循环提取格式化</a></h3><blockquote>
+<p>在数据处理过程中，经常遇到一些格式化处理，比如简单地将一批数据格式化为SQL（参考9.2），还有复杂的需要对一行数据的某部分进行循环提取，然后格式化为特定格式。</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">需求：循环提取每行数据的分支部分和固定部分，格式化为特定格式</div><div class="line">源串：</div><div class="line">BBB|CCC|DDD=AAA</div><div class="line">FFF|GGG|HHH|III|JJJ|KKK=EEE</div><div class="line">预期：</div><div class="line">BBB=AAA</div><div class="line">CCC=AAA</div><div class="line">DDD=AAA</div><div class="line">FFF=EEE</div><div class="line">GGG=EEE</div><div class="line">HHH=EEE</div><div class="line">III=EEE</div><div class="line">JJJ=EEE</div><div class="line">KKK=EEE</div><div class="line">查找：\|(?=.*(=.*))</div><div class="line">替换：$<span class="number">1</span>\n</div></pre></td></tr></table></figure>
+<h3 id="二十-三段论应用"><a href="#二十-三段论应用" class="headerlink" title="二十. 三段论应用"></a><a name="twenty">二十. 三段论应用</a></h3><blockquote>
+<p>三段论:定锚点，去噪点，取数据。<br> <strong>锚点</strong>，在正则中指^、$、\b这类零宽的位置，这里做了衍生，指能够唯一确定我们目标数据位置的参照点，比如author=lalala，我们要匹配author属性的数据，则author=就是我们的参照点，通过它，我们能快速写出提取author属性的数据的正则：author=(.+)。<br> <strong>噪点</strong>，就是对我们提取数据产生干扰的无关数据，我们在做正则匹配提取数据的过程中，可以选择性的忽略它们。当然，这里的忽略不是指不需要对它们做匹配，而是不需要对它们做精确匹配。<br> <strong>数据</strong>，这个当然是指我们需要提取的内容了，如上面锚点举例，我们通过author=(.+)的(.+)对lalala部分数据进行了提取，因此，匹配结果的分组1（程序语言中的数组下标1）中，就能得到我们的结果。而对于多个数据的提取，如噪点举例，我们只需要针对数据部分进行多个分组（括号）的提取即可。<br> 分组的计数，一般可以数左括号，排除环视和非捕获组的左括号，从1开始，依次加1递增，1,2,3,4….n，不同语言最大分组个数不同，大家在使用过程中自行留意，不过一般用不了那么多分组。<br> 理解了三段论的概念，我们在写正则的过程中，只需要将源串进行分割划分，根据目标数据确定锚点，过滤噪点，提取数据，就能得到我们想要的正则了。</p>
+</blockquote>
+
+      
+    </div>
+    <div class="article-footer">
+      <blockquote class="mt-2x">
+  <ul class="post-copyright list-unstyled">
+    
+    <li class="post-copyright-link hidden-xs">
+      <strong>本文链接：</strong>
+      <a href="http://www/lyj1215.com/2017/09/13/regex2/" title="正则表达式测试题" target="_blank" rel="external">http://www/lyj1215.com/2017/09/13/regex2/</a>
+    </li>
+    
+    <li class="post-copyright-license">
+      <strong>版权声明： </strong> 本博客所有文章除特别声明外，均采用 <a href="http://creativecommons.org/licenses/by/4.0/deed.zh" target="_blank" rel="external">CC BY 4.0 CN协议</a> 许可协议。转载请注明出处！
+    </li>
+  </ul>
+</blockquote>
+
+
+<div class="panel panel-default panel-badger">
+  <div class="panel-body">
+    <figure class="media">
+      <div class="media-left">
+        <a href="https://github.com/liuyajuan15" target="_blank" class="img-burn thumb-sm visible-lg">
+          <img src="/img/php.jpg" class="img-rounded w-full" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h3 class="media-heading"><a href="https://github.com/liuyajuan15" target="_blank"><span class="text-dark">lyj</span><small class="ml-1x">刘亚娟</small></a></h3>
+        <div>坚持就是胜利。</div>
+      </div>
+    </figure>
+  </div>
+</div>
+
+
+    </div>
+  </article>
+  
+    
+  <section id="comments">
+  	
+       
+<div id="lv-container" data-id="city" data-uid="MTAyMC8zMDc0NC83Mjk2">
+  <noscript> 为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+      
+    
+  </section>
+
+
+  
+</div>
+
+  <nav class="bar bar-footer clearfix" data-stick-bottom>
+  <div class="bar-inner">
+  
+  <ul class="pager pull-left">
+    
+    <li class="prev">
+      <a href="/2017/09/17/regex3/" title="正则表达式的匹配原理"><i class="fa fa-angle-left" aria-hidden="true"></i>&nbsp;&nbsp;上一篇</a>
+    </li>
+    
+    
+    <li class="next">
+      <a href="/2017/09/12/regex1/" title="正则表达式基本介绍">下一篇&nbsp;&nbsp;<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+    </li>
+    
+  </ul>
+  
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-fancy btn-donate pop-onhover bg-gradient-warning hidden-xs" data-toggle="modal" data-target="#donateModal"><span>赏</span></button>
+  
+  
+  </div>
+</nav>
+  
+<!-- Modal -->
+<div class="modal modal-center modal-xs-full fade" id="donateModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <div class="modal-body">
+        <div class="donate-box">
+          <div class="donate-tit">
+            <p>感谢您的支持，我会继续努力的!</p>
+          </div>
+          <div class="donate-payimg">
+            <img src="/img/alipay.png" alt="扫码支持" title="扫一扫" />
+          </div>
+          <p class="text-muted mv">扫码打赏，你说多少就多少</p>
+          <div class="donate-payselect">
+            <div class="pay_item checked" data-id="alipay" data-src="/img/alipay.png">
+              <div class="radio">
+                <input type="radio" name="payment" id="input-alipay" value="alipay" checked>
+                <label class="pay_logo clickable" for="input-alipay"><img src="/images/donate/alipay.jpg" alt="支付宝" /></label>
+              </div>
+            </div>
+            <div class="pay_item" data-id="weipay" data-src="/img/wechat.png">
+              <div class="radio">
+                <input type="radio" name="payment" id="input-weipay" value="weipay">
+                <label class="pay_logo clickable" for="input-weipay"><img src="/images/donate/weipay.jpg" alt="微信支付" /></label>
+              </div>
+            </div>
+          </div>
+          <div class="text-grey">
+            <p>打开<span id="donate-pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+</main>
+
+  <footer class="footer" itemscope itemtype="http://schema.org/WPFooter">
+	
+	
+    <ul class="social-links">
+    	
+        <li><a href="https://github.com/liuyajuan15" target="_blank" title="Github" data-toggle=tooltip data-placement=top><i class="fa fa-github"></i></a></li>
+        
+        <li><a href="https://weibo.com/p/1005055677293838/home?from=page_100505&mod=TAB#place" target="_blank" title="Weibo" data-toggle=tooltip data-placement=top><i class="fa fa-weibo"></i></a></li>
+        
+        <li><a href="/" target="_blank" title="Twitter" data-toggle=tooltip data-placement=top><i class="fa fa-twitter"></i></a></li>
+        
+        <li><a href="/" target="_blank" title="Behance" data-toggle=tooltip data-placement=top><i class="fa fa-behance"></i></a></li>
+        
+        <li><a href="/atom.xml" target="_blank" title="Rss" data-toggle=tooltip data-placement=top><i class="fa fa-rss"></i></a></li>
+        
+    </ul>
+
+    <div class="copyright">
+    	
+        <div class="publishby">
+        	Theme by <a href="https://github.com/cofess" target="_blank"> cofess </a>base on <a href="https://github.com/cofess/hexo-theme-pure" target="_blank">pure</a>.
+        </div>
+    </div>
+</footer>
+  <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script>
+window.jQuery || document.write('<script src="js/jquery.min.js"><\/script>')
+</script>
+<script src="/js/plugin.js"></script>
+<script src="/js/application.js"></script>
+  
+    
+    
+    
+        <script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+    
+    
+        
+<script defer src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+    
+    
+        
+    
+<script defer type="text/javascript">
+  (function(d, s) {
+    var j, e = d.getElementsByTagName(s)[0];
+
+    if (typeof LivereTower === 'function') { return; }
+
+    j = d.createElement(s);
+    j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+    j.async = true;
+
+    e.parentNode.insertBefore(j, e);
+  })(document, 'script');
+</script>
+
+
+    
+    
+
+
+
+</body>
+</html>

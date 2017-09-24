@@ -356,7 +356,7 @@ categories: 正则表达式
     预期：分组0匹配行数据，分组1匹配文件名
     file1.txt
     file2long.jpg
-    正则：
+    正则：/.*\/(.*)/'
 ```
 * 限定字符贪婪优化匹配性能
 
@@ -365,7 +365,7 @@ categories: 正则表达式
     源串：
     <div id="author" class="author-text something-useless">Zjmainstay</div>
     预期：利用贪婪模式去掉div中的噪点（无关数据），分组1匹配到Zjmainstay
-    正则：
+    正则：<.*>(.*)<.*>
 ```
 
 ### <a name="thirteen">十三. 非贪婪模式</a>
@@ -380,7 +380,7 @@ categories: 正则表达式
     <p>内容1</p><p>内容2</p>
     预期：
     在分组1中匹配到内容1和内容2
-    正则：
+    正则：<p>(.*)<\/p><p>(.*)<\/p>
 ```
 
 ### <a name="fourteen">十四. 占用模式(PCRE)</a>
