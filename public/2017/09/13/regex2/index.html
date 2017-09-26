@@ -25,7 +25,7 @@
 <meta property="og:site_name" content="lyjの博客">
 <meta property="og:description" content="正则掌握程度测试题,以下测试题来自于 https://www.zybuluo.com/Zjmainstay/note/709093， 答案是我自己的分析，欢迎各位进行批评与指导,部分习题答案后续不上   一.分组提取/非捕获组 二.单字符或 三.多字符或 四.分组引用 五.匹配换行数据 六.存在（或） 七. 存在（与） 八. 特殊限制（环视否定） 九. 替换分组使用 十. 分组可选 十一. 单字">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2017-09-23T04:12:48.000Z">
+<meta property="og:updated_time" content="2017-09-25T01:53:39.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="正则表达式测试题">
 <meta name="twitter:description" content="正则掌握程度测试题,以下测试题来自于 https://www.zybuluo.com/Zjmainstay/note/709093， 答案是我自己的分析，欢迎各位进行批评与指导,部分习题答案后续不上   一.分组提取/非捕获组 二.单字符或 三.多字符或 四.分组引用 五.匹配换行数据 六.存在（或） 七. 存在（与） 八. 特殊限制（环视否定） 九. 替换分组使用 十. 分组可选 十一. 单字">
@@ -132,7 +132,7 @@
         
         
         
-        <li class="menu-item menu-item-about active">
+        <li class="menu-item menu-item-about">
           <a href="/about">
             
             <i class="fa fa-fw fa-coffee"></i>
@@ -365,16 +365,16 @@
 <h3 id="十二-贪婪模式"><a href="#十二-贪婪模式" class="headerlink" title="十二. 贪婪模式"></a><a name="twelve">十二. 贪婪模式</a></h3><ul>
 <li>匹配链接中的文件名</li>
 </ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">需求：利用贪婪模式，分组<span class="number">1</span>得到每行链接中的文件名</div><div class="line">源串：</div><div class="line">http:<span class="comment">//localhost.com/a/b/c/d/file1.txt</span></div><div class="line">https:<span class="comment">//localhost.com/a/b/file2long.jpg</span></div><div class="line">预期：分组<span class="number">0</span>匹配行数据，分组<span class="number">1</span>匹配文件名</div><div class="line">file1.txt</div><div class="line">file2long.jpg</div><div class="line">正则：</div></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">需求：利用贪婪模式，分组<span class="number">1</span>得到每行链接中的文件名</div><div class="line">源串：</div><div class="line">http:<span class="comment">//localhost.com/a/b/c/d/file1.txt</span></div><div class="line">https:<span class="comment">//localhost.com/a/b/file2long.jpg</span></div><div class="line">预期：分组<span class="number">0</span>匹配行数据，分组<span class="number">1</span>匹配文件名</div><div class="line">file1.txt</div><div class="line">file2long.jpg</div><div class="line">正则：/.*\/(.*)/<span class="string">'</span></div></pre></td></tr></table></figure>
 <ul>
 <li>限定字符贪婪优化匹配性能</li>
 </ul>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">需求：匹配div id=<span class="string">"author"</span>的标签内容</div><div class="line">源串：</div><div class="line">&lt;div id="author" class="author-text something-useless"&gt;Zjmainstay&lt;/div&gt;</div><div class="line">预期：利用贪婪模式去掉div中的噪点（无关数据），分组<span class="number">1</span>匹配到Zjmainstay</div><div class="line">正则：</div></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">需求：匹配div id=<span class="string">"author"</span>的标签内容</div><div class="line">源串：</div><div class="line">&lt;div id="author" class="author-text something-useless"&gt;Zjmainstay&lt;/div&gt;</div><div class="line">预期：利用贪婪模式去掉div中的噪点（无关数据），分组<span class="number">1</span>匹配到Zjmainstay</div><div class="line">正则：&lt;.*&gt;(.*)&lt;.*&gt;</div></pre></td></tr></table></figure>
 <h3 id="十三-非贪婪模式"><a href="#十三-非贪婪模式" class="headerlink" title="十三. 非贪婪模式"></a><a name="thirteen">十三. 非贪婪模式</a></h3><blockquote>
 <p>贪婪模式，正则会优先尽可能少地匹配能匹配到的内容。当剩余正则匹配剩余部分字符（源串）但无法满足匹配时，非贪婪部分继续匹配更多内容，尝试满足剩余部分字符的匹配。</p>
 </blockquote>
 <p>匹配p标签内容</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">需求：匹配p标签内容</div><div class="line">源串：</div><div class="line">&lt;p&gt;内容<span class="number">1</span>&lt;/p&gt;&lt;p&gt;内容<span class="number">2</span>&lt;/p&gt;</div><div class="line">预期：</div><div class="line">在分组<span class="number">1</span>中匹配到内容<span class="number">1</span>和内容<span class="number">2</span></div><div class="line">正则：</div></pre></td></tr></table></figure>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">需求：匹配p标签内容</div><div class="line">源串：</div><div class="line">&lt;p&gt;内容<span class="number">1</span>&lt;/p&gt;&lt;p&gt;内容<span class="number">2</span>&lt;/p&gt;</div><div class="line">预期：</div><div class="line">在分组<span class="number">1</span>中匹配到内容<span class="number">1</span>和内容<span class="number">2</span></div><div class="line">正则：&lt;p&gt;(.*)&lt;\/p&gt;&lt;p&gt;(.*)&lt;\/p&gt;</div></pre></td></tr></table></figure>
 <h3 id="十四-占用模式-PCRE"><a href="#十四-占用模式-PCRE" class="headerlink" title="十四. 占用模式(PCRE)"></a><a name="fourteen">十四. 占用模式(PCRE)</a></h3><blockquote>
 <p>贪婪模式后再加一个+量词，如.++，效果是贪婪而且不回溯。<br> 暂时没有想到应用场景。</p>
 </blockquote>
