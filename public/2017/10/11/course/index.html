@@ -16,23 +16,21 @@
   <meta http-equiv="window-target" content="_top" />
   
   
-  <title>laravel框架中常用PHP语法 | lyjの博客</title>
-  <meta name="description" content="一、文件包含1.include与require 共同点：include与require关键字用于包含并运行指定文件。 不同点：两者作用几乎一样，只是处理失败的方式不同。require在出错时产生E_COMPILE_ERROR级别的错误，因此会导致脚本程序运行终止，而include则是会产生E_WARNING级别错误，只会发出警告，而脚本程序会继续运行。 查找路径的方式12345678910if(如">
-<meta name="keywords" content="laravel">
+  <title>PHP的进程线程理解 | lyjの博客</title>
+  <meta name="description" content="计算机的核心是CPU,它承担了所有的计算任务。它就像一座工厂，时刻在运行。假定工厂的电力有限，一次只能供给一个车间使用。也就是说，一个车间开工的时候，其他车间必须停工。背后的含义就是，单个CPU一次只能运行一个任务。一个车间可以有很多的工人，他们协同完成一个任务。 进程就好比工厂的车间，它代表CPU所能处理的单个任务，任一时刻，CPU总是运行一个进程，其他进程处于非运行状态。 线程就好比车间里的工">
+<meta name="keywords" content="PHP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="laravel框架中常用PHP语法">
-<meta property="og:url" content="http://www/lyj1215.com/2017/09/08/laravel-3/index.html">
+<meta property="og:title" content="PHP的进程线程理解">
+<meta property="og:url" content="http://www/lyj1215.com/2017/10/11/course/index.html">
 <meta property="og:site_name" content="lyjの博客">
-<meta property="og:description" content="一、文件包含1.include与require 共同点：include与require关键字用于包含并运行指定文件。 不同点：两者作用几乎一样，只是处理失败的方式不同。require在出错时产生E_COMPILE_ERROR级别的错误，因此会导致脚本程序运行终止，而include则是会产生E_WARNING级别错误，只会发出警告，而脚本程序会继续运行。 查找路径的方式12345678910if(如">
+<meta property="og:description" content="计算机的核心是CPU,它承担了所有的计算任务。它就像一座工厂，时刻在运行。假定工厂的电力有限，一次只能供给一个车间使用。也就是说，一个车间开工的时候，其他车间必须停工。背后的含义就是，单个CPU一次只能运行一个任务。一个车间可以有很多的工人，他们协同完成一个任务。 进程就好比工厂的车间，它代表CPU所能处理的单个任务，任一时刻，CPU总是运行一个进程，其他进程处于非运行状态。 线程就好比车间里的工">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://www/img/include.jpg">
-<meta property="og:updated_time" content="2017-09-20T03:46:12.000Z">
+<meta property="og:updated_time" content="2017-10-11T07:52:52.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="laravel框架中常用PHP语法">
-<meta name="twitter:description" content="一、文件包含1.include与require 共同点：include与require关键字用于包含并运行指定文件。 不同点：两者作用几乎一样，只是处理失败的方式不同。require在出错时产生E_COMPILE_ERROR级别的错误，因此会导致脚本程序运行终止，而include则是会产生E_WARNING级别错误，只会发出警告，而脚本程序会继续运行。 查找路径的方式12345678910if(如">
-<meta name="twitter:image" content="http://www/img/include.jpg">
+<meta name="twitter:title" content="PHP的进程线程理解">
+<meta name="twitter:description" content="计算机的核心是CPU,它承担了所有的计算任务。它就像一座工厂，时刻在运行。假定工厂的电力有限，一次只能供给一个车间使用。也就是说，一个车间开工的时候，其他车间必须停工。背后的含义就是，单个CPU一次只能运行一个任务。一个车间可以有很多的工人，他们协同完成一个任务。 进程就好比工厂的车间，它代表CPU所能处理的单个任务，任一时刻，CPU总是运行一个进程，其他进程处于非运行状态。 线程就好比车间里的工">
   <!-- Canonical links -->
-  <link rel="canonical" href="http://www/lyj1215.com/2017/09/08/laravel-3/index.html">
+  <link rel="canonical" href="http://www/lyj1215.com/2017/10/11/course/index.html">
   
     <link rel="alternate" href="/atom.xml" title="lyjの博客" type="application/atom+xml">
   
@@ -219,14 +217,14 @@
   
 <main class="main" role="main">
   <div class="content">
-  <article id="post-laravel-3" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
+  <article id="post-course" class="article article-type-post" itemscope itemtype="http://schema.org/BlogPosting">
     
     <div class="article-header">
       
         
   
     <h1 class="article-title" itemprop="name">
-      laravel框架中常用PHP语法
+      PHP的进程线程理解
     </h1>
   
 
@@ -234,20 +232,15 @@
       <div class="article-meta">
         <span class="article-date">
     <i class="fa fa-calendar-check-o"></i>
-	<a href="/2017/09/08/laravel-3/" class="article-date">
-	  <time datetime="2017-09-08T01:51:06.000Z" itemprop="datePublished">2017-09-08</time>
+	<a href="/2017/10/11/course/" class="article-date">
+	  <time datetime="2017-10-11T06:48:20.000Z" itemprop="datePublished">2017-10-11</time>
 	</a>
 </span>
         
-  <span class="article-category">
-    <i class="fa fa-folder"></i>
-    <a class="article-category-link" href="/categories/框架分析/">框架分析</a>
-  </span>
-
         
   <span class="article-tag">
     <i class="fa fa-tag"></i>
-	<a class="article-tag-link" href="/tags/laravel/">laravel</a>
+	<a class="article-tag-link" href="/tags/PHP/">PHP</a>
   </span>
 
 
@@ -260,31 +253,25 @@
 	</span>
 
 
-        <span class="post-comment"><i class="fa fa-commenting-o"></i> <a href="/2017/09/08/laravel-3/#comments" class="article-comment-link">评论</a></span>
+        <span class="post-comment"><i class="fa fa-commenting-o"></i> <a href="/2017/10/11/course/#comments" class="article-comment-link">评论</a></span>
         
       </div>
       
     </div>
     <div class="article-entry markdown-body" itemprop="articleBody">
       
-        <h3 id="一、文件包含"><a href="#一、文件包含" class="headerlink" title="一、文件包含"></a>一、文件包含</h3><h4 id="1-include与require"><a href="#1-include与require" class="headerlink" title="1.include与require"></a>1.include与require</h4><ul>
-<li>共同点：include与require关键字用于包含并运行指定文件。</li>
-<li>不同点：两者作用几乎一样，只是处理失败的方式不同。require在出错时产生E_COMPILE_ERROR级别的错误，因此会导致脚本程序运行终止，而include则是会产生E_WARNING级别错误，只会发出警告，而脚本程序会继续运行。</li>
-<li>查找路径的方式<figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(如果定义了路径，不管绝对路径还是相对路径)&#123;</div><div class="line">     include_path会被忽略，按参数给出的路径寻找；</div><div class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>(只有文件名，没有目录名)&#123;</div><div class="line">     则按照include_path指定的目录寻找；</div><div class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>(include_path没有)&#123;</div><div class="line">     在调用脚本所在的目录和当前工作目录下寻找</div><div class="line">&#125;<span class="keyword">else</span>&#123;</div><div class="line">     Include 发出一条警告，require发生一个致命错误</div><div class="line">&#125;</div><div class="line">  </div></pre></td></tr></table></figure></li>
-<li><p>include查找路径的方式比较，推荐由高到低</p>
+        <p>计算机的核心是CPU,它承担了所有的计算任务。它就像一座工厂，时刻在运行。假定工厂的电力有限，一次只能供给一个车间使用。也就是说，一个车间开工的时候，其他车间必须停工。背后的含义就是，单个CPU一次只能运行一个任务。一个车间可以有很多的工人，他们协同完成一个任务。</p>
+<p><strong>进程就好比工厂的车间，它代表CPU所能处理的单个任务，任一时刻，CPU总是运行一个进程，其他进程处于非运行状态。</strong></p>
+<p><strong>线程就好比车间里的工人，一个进程可以包括多个线程</strong>。</p>
+<p>车间的空间是工人们共享的，比如许多房间是每个工人都可以进出的，这象征一个进程的内存空间是共享的，每个线程都可以使用这些共享内存。可是，每间房间的大小不同，有些房间最多只能容纳一个人，比如厕所。里面有人的时候，其他人就不能进去了，这代表一个线程使用某些共享内存时，其他线程必须等它结束，才能使用这一块内存。</p>
+<p>一个防止他人进入的简单方法，就是在门口加一把锁。先到的人锁上门，后到的人看到上锁，就在门口排队，等锁打开再进去。这就叫“互斥锁”（Mutual exclusion，缩写 Mutex），防止多个线程同时读写某一块内存区域。</p>
+<p>还有些房间，可以同时容纳n个人，比如厨房。也就是说，如果人数大于n，多出来的人值能在外面等着。这好比某些内存区域，只能供给固定数目的线程使用。这时的解决方法，就是在门口挂n把钥匙。进去的人就取一把钥匙，出来时再把钥匙挂回原醋。后到的人发现钥匙架空了，就知道必须在门口排队等着了。这种做法叫做“信号量”（Semaphore），用来保证多个线程不会相互冲突。</p>
+<p><strong>操作系统的设计，因此可以归结为三点：</strong></p>
 <ol>
-<li>通过当前路径查找，好处是迁移到别的项目时什么都不用改</li>
-<li>使用include_path，即默认路径，迁移项目是需要改php.ini</li>
-<li>绝对路径，迁移项目时需要改代码</li>
-<li>相对路径，迁移项目时什么都不用改，但是为什么不推荐，是因为当被多人include时，会存在bug<br>1).文件存储如下图所示，当a.php include b.php，c.php include a.php<br>2).当单独访问a.php没有问题，但是访问c.php就会报错，找不到b.php</li>
+<li><strong>以多进程形式，允许多个任务同时运行；</strong></li>
+<li><strong>以多线程形式，允许单个任务分成不同的部分运行；</strong></li>
+<li><strong>提供协调机制，一方面防止进程之间和线程之间产生冲突，另一方面允许进程之间和线程之间共享资源。</strong></li>
 </ol>
-<p><img src="/img/include.jpg" alt="include" title="include"></p>
-</li>
-</ul>
-<ul>
-<li>如果包含了一个定义了路径的文件，如include “../file.php”,无论是相对路径还是绝对路径，系统只会在相应的路径下寻找该文件，例如一个文件以“../”开头，则解析器会在当前目录的父目录下寻找该文件。当一个文件被包含时，包含文件则继承了被包含文件拥有的变量，从该处开始，被包含文件可用的任何变量在包含的文件中也都可用，同时在被包含文件中定义的函数，类或者常量都具有全局作用域。</li>
-</ul>
-<h4 id="2-类的自动加载"><a href="#2-类的自动加载" class="headerlink" title="2.类的自动加载"></a>2.类的自动加载</h4><h4 id="3-laravel中的实现"><a href="#3-laravel中的实现" class="headerlink" title="3.laravel中的实现"></a>3.laravel中的实现</h4><p>  注：以上内容参考《PHP手册》和《laravel框架关键技术解析》以及laravel源代码</p>
 
       
     </div>
@@ -294,7 +281,7 @@
     
     <li class="post-copyright-link hidden-xs">
       <strong>本文链接：</strong>
-      <a href="http://www/lyj1215.com/2017/09/08/laravel-3/" title="laravel框架中常用PHP语法" target="_blank" rel="external">http://www/lyj1215.com/2017/09/08/laravel-3/</a>
+      <a href="http://www/lyj1215.com/2017/10/11/course/" title="PHP的进程线程理解" target="_blank" rel="external">http://www/lyj1215.com/2017/10/11/course/</a>
     </li>
     
     <li class="post-copyright-license">
@@ -344,13 +331,9 @@
   
   <ul class="pager pull-left">
     
-    <li class="prev">
-      <a href="/2017/09/08/copy/" title="深拷贝和浅拷贝"><i class="fa fa-angle-left" aria-hidden="true"></i>&nbsp;&nbsp;上一篇</a>
-    </li>
-    
     
     <li class="next">
-      <a href="/2017/09/07/uml/" title="UML类图关系总结">下一篇&nbsp;&nbsp;<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+      <a href="/2017/09/26/question/" title="转载《提问的智慧》">下一篇&nbsp;&nbsp;<i class="fa fa-angle-right" aria-hidden="true"></i></a>
     </li>
     
   </ul>
