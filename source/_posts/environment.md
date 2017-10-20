@@ -1,5 +1,5 @@
 ---
-title: Linux 环境变量和查找文件
+title: Linux 环境变量
 date: 2017-10-19 10:07:17
 categories: Linux
 tags: Linux
