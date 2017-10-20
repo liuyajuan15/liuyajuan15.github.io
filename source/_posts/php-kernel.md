@@ -1,6 +1,7 @@
 ---
-title: 1.从SAPI接口开始
+title: PHP内核——1.从SAPI接口开始
 date: 2017-10-16 14:29:45
+categories: 内核探索
 tags: [PHP,内核探索]
 ---
 >参考：
